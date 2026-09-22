@@ -363,4 +363,105 @@ select {
   }
 }
 
+.analysis-section {
+  margin: 34px 0;
+  text-align: left;
+}
 
+.analysis-section h2 {
+  margin: 0 0 18px;
+  font-size: 1.15rem;
+  color: #30354b;
+}
+
+.indicator-list {
+  display: grid;
+  gap: 12px;
+}
+
+.indicator-item {
+  padding: 16px 18px;
+  background: #f5f6fb;
+  border-radius: 14px;
+}
+
+.indicator-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.indicator-head strong {
+  color: #30354b;
+}
+
+.indicator-head span {
+  min-width: 38px;
+  text-align: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #e5e9f5;
+  color: #313c73;
+  font-size: 0.82rem;
+  font-weight: bold;
+}
+
+.indicator-item p {
+  margin: 8px 0 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.time-grid div {
+  padding: 15px;
+  background: #f5f6fb;
+  border-radius: 14px;
+}
+
+.time-grid span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.72rem;
+  color: #777;
+}
+
+.time-grid strong {
+  font-size: 0.95rem;
+  color: #30354b;
+}
+
+.time-comment {
+  margin: 16px 0 0;
+  padding: 16px 18px;
+  border-left: 3px solid #313c73;
+  background: #f8f8fc;
+  font-size: 0.9rem;
+}
+
+.time-gap {
+  margin: 12px 0 0;
+  font-size: 0.82rem;
+  color: #777;
+}
+
+.time-gap strong {
+  margin-left: 5px;
+  color: #313c73;
+}
+
+@media (max-width: 600px) {
+  .time-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .time-grid div {
+    padding: 12px;
+  }
+}
