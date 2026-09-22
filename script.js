@@ -1298,6 +1298,26 @@ if (timeDeviationRate === null) {
       <strong>${round(structural)}%</strong>
     </p>
 
+<div class="perception-box">
+  <h2>${perceptionInsight.headline}</h2>
+
+  <p>${perceptionInsight.body}</p>
+
+  <div class="perception-numbers">
+    <span>
+      構造上
+      <strong>${round(structural)}%</strong>
+    </span>
+
+    <span class="perception-arrow">→</span>
+
+    <span>
+      体感
+      <strong>${round(felt)}%</strong>
+    </span>
+  </div>
+</div>
+
     <div class="type-box">
       <div class="type-label">あなたの現在地</div>
       <h1>${profile.type}</h1>
