@@ -1228,6 +1228,66 @@ if (timeDeviationRate === null) {
       </div>
     </div>
 
+<div class="analysis-section">
+  <h2>5つの指標から見る現在地</h2>
+
+  <div class="indicator-list">
+    ${indicatorComments.map(item => `
+      <div class="indicator-item">
+        <div class="indicator-head">
+          <strong>${item.label}</strong>
+          <span>
+            ${item.value === null ? "―" : Math.round(item.value)}
+          </span>
+        </div>
+
+        <p>${item.text}</p>
+      </div>
+    `).join("")}
+  </div>
+</div>
+
+<div class="analysis-section time-section">
+  <h2>時間軸</h2>
+
+  <div class="time-grid">
+    <div>
+      <span>目標を持ってから</span>
+      <strong>${formatDuration(a.T1)}</strong>
+    </div>
+
+    <div>
+      <span>行動を始めてから</span>
+      <strong>${formatDuration(a.T2)}</strong>
+    </div>
+
+    <div>
+      <span>当初の到達予定</span>
+      <strong>${formatDuration(a.T3)}</strong>
+    </div>
+
+    <div>
+      <span>現在の残り見込み</span>
+      <strong>${formatDuration(a.T4, "あと")}</strong>
+    </div>
+  </div>
+
+  <p class="time-comment">
+    ${timeComment}
+  </p>
+
+  ${
+    timeDeviationRate !== null
+      ? `
+        <p class="time-gap">
+          当初想定との時間差
+          <strong>${percentSigned(timeDeviationRate)}</strong>
+        </p>
+      `
+      : ""
+  }
+</div>
+
     <div class="test-result">
       <p>
         認識差：
