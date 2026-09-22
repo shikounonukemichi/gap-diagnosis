@@ -47,3 +47,152 @@ button {
 button:hover {
   opacity: 0.85;
 }
+
+body {
+  align-items: flex-start;
+  padding: 32px 0;
+}
+
+.progress-wrap {
+  margin-bottom: 28px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.82rem;
+  color: #777;
+}
+
+.progress-track {
+  height: 7px;
+  background: #e8eaf2;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #313c73;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.question-card {
+  text-align: left;
+}
+
+.question-card h1 {
+  font-size: 1.45rem;
+  line-height: 1.55;
+  margin-top: 8px;
+}
+
+.question-id {
+  font-size: 0.78rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  color: #777;
+}
+
+.helper {
+  font-size: 0.92rem;
+  margin-bottom: 24px;
+}
+
+.choice-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.choice {
+  width: 100%;
+  text-align: left;
+  border-radius: 14px;
+  padding: 15px 18px;
+  background: #f3f5fb;
+  color: #30354b;
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+.choice:hover {
+  opacity: 1;
+  background: #e9edf8;
+}
+
+.choice.selected {
+  background: #313c73;
+  color: white;
+}
+
+.text-input,
+.number-input,
+select {
+  width: 100%;
+  border: 1px solid #d8dce8;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 1rem;
+  background: white;
+}
+
+.duration-row {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.special-list {
+  margin-top: 14px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.secondary {
+  background: #e8ebf4;
+  color: #313c73;
+}
+
+.error {
+  min-height: 1.5em;
+  margin: 14px 0 0;
+  font-size: 0.85rem;
+  color: #b23a48;
+}
+
+.test-result {
+  margin: 24px 0 30px;
+  padding: 18px;
+  background: #f5f6fb;
+  border-radius: 16px;
+}
+
+.test-result p {
+  margin: 6px 0;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 18px 0;
+  }
+
+  .container {
+    width: 94%;
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+
+  .question-card h1 {
+    font-size: 1.25rem;
+  }
+}
