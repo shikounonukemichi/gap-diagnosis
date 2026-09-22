@@ -1428,22 +1428,7 @@ if (timeDeviationRate === null) {
   }
 </div>
 
-    <div class="test-result">
-      <p>
-        認識差：
-        <strong>
-          ${perceptionGap === null
-            ? "―"
-            : `${perceptionGap >= 0 ? "+" : ""}${Math.round(perceptionGap)}pt`
-          }
-        </strong>
-      </p>
-
-      <p>
-        時間乖離：
-        <strong>${percentSigned(timeDeviationRate)}</strong>
-      </p>
-    </div>
+    
 
     <button type="button" id="restartBtn">
       もう一度診断する
