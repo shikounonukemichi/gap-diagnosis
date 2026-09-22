@@ -717,6 +717,107 @@ function formatDuration(answer, prefix = "") {
   return `${prefix}${amount}${unit}`;
 }
 
+function getPerceptionInsight({
+  structural,
+  felt,
+  signedGap,
+  M,
+  L1,
+  L2,
+  L3
+}) {
+  if (structural === null || felt === null) {
+    return {
+      headline: "現在地と体感の差は算出できませんでした。",
+      body: ""
+    };
+  }
+
+  const diff = felt - structural;
+
+  let headline = "";
+
+  if (diff <= -12) {
+    headline = "進んではいる。でも、あなたの中ではまだ遠い。";
+  } else if (diff <= -4) {
+    headline = "実際の現在地より、体感は少し厳しめです。";
+  } else if (diff < 4) {
+    headline = "現在地と、あなたの実感はほぼ一致しています。";
+  } else if (diff < 12) {
+    headline = "現在地以上に、前進の手応えを感じています。";
+  } else {
+    headline = "まだ途中でも、あなたの中ではかなり前に進んでいます。";
+  }
+
+  const downReasons = [];
+  const upReasons = [];
+
+  // 当初想定との差
+  if (typeof signedGap === "number") {
+    if (signedGap >= 0.25) {
+      downReasons.push("当初思い描いていたペースとのズレ");
+    } else if (signedGap <= -0.25) {
+      upReasons.push("想定より前倒しで進んでいる感覚");
+    }
+  }
+
+  // 達成条件
+  if (typeof M === "number") {
+    if (M >= 65) {
+      downReasons.push("「ここまで来なければ達成ではない」という基準の高さ");
+    } else if (M <= 35) {
+      upReasons.push("達成の形を柔軟に受け入れられること");
+    }
+  }
+
+  // 外部要因
+  if (
+    typeof L1 === "number" &&
+    typeof L2 === "number" &&
+    typeof L3 === "number"
+  ) {
+    const balance = (L2 - L1) / 100;
+    const impact = 0.10 + 0.10 * (L3 / 100);
+    const luckEffect = balance * impact;
+
+    if (luckEffect <= -0.04) {
+      downReasons.push("自分では動かしにくい逆風");
+    } else if (luckEffect >= 0.04) {
+      upReasons.push("偶然や巡り合わせによる追い風");
+    }
+  }
+
+  let body = "";
+
+  if (diff <= -4) {
+    if (downReasons.length) {
+      body =
+        `回答を見ると、${downReasons.join("、")}が、` +
+        "現在地そのものよりも「まだ足りない」という感覚を強くしています。";
+    } else {
+      body =
+        "回答上では、実際の進捗に比べて、自分自身の評価の方がやや厳しくなっています。";
+    }
+  } else if (diff >= 4) {
+    if (upReasons.length) {
+      body =
+        `回答を見ると、${upReasons.join("、")}が、` +
+        "現在地以上の手応えにつながっています。";
+    } else {
+      body =
+        "回答上では、現在地そのもの以上に、前進している実感を持てています。";
+    }
+  } else {
+    body =
+      "進捗の状態と、それをあなた自身がどう感じているかに、大きなズレはありません。";
+  }
+
+  return {
+    headline,
+    body
+  };
+}
+
 function render() {
   const q = questions[state.index];
   const progress = Math.round(((state.index + 1) / questions.length) * 100);
