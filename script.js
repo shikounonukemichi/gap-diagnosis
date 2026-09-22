@@ -551,9 +551,10 @@ function createRadarChart(items) {
   // 補助タグ
   const tags = [];
 
+  if (typeof gap === "number") {
   if (gap >= 60) tags.push("想定より遅れ");
   if (gap <= 15) tags.push("ほぼ想定内");
-
+}
   if (flex <= 25) tags.push("完成形重視");
   if (flex >= 75) tags.push("柔軟");
 
