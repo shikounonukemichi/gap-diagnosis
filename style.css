@@ -465,3 +465,54 @@ select {
     padding: 12px;
   }
 }
+
+.perception-box {
+  margin: 24px 0 32px;
+  padding: 22px 20px;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(49, 60, 115, 0.08),
+    rgba(118, 87, 160, 0.08)
+  );
+  text-align: left;
+}
+
+.perception-box h2 {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: #30354b;
+}
+
+.perception-box p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.perception-numbers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.perception-numbers span {
+  font-size: 0.78rem;
+  color: #777;
+  text-align: center;
+}
+
+.perception-numbers strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 1.35rem;
+  color: #313c73;
+}
+
+.perception-arrow {
+  font-size: 1.2rem !important;
+  color: #999 !important;
+}
