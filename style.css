@@ -181,6 +181,47 @@ select {
   color: #333;
 }
 
+.radar-wrap {
+  width: 100%;
+  max-width: 440px;
+  margin: 10px auto 30px;
+}
+
+.radar-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.radar-grid {
+  fill: none;
+  stroke: #d9deeb;
+  stroke-width: 1;
+}
+
+.radar-axis {
+  stroke: #d9deeb;
+  stroke-width: 1;
+}
+
+.radar-data {
+  fill: rgba(49, 60, 115, 0.18);
+  stroke: #313c73;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.radar-dot {
+  fill: #313c73;
+}
+
+.radar-label {
+  fill: #444;
+  font-size: 12px;
+  font-weight: 600;
+}
+
 @media (max-width: 600px) {
   body {
     padding: 18px 0;
