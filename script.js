@@ -378,6 +378,120 @@ function weightedAverage(items) {
   ) / weightSum;
 }
 
+function createRadarChart(items) {
+  const size = 360;
+  const center = 180;
+  const radius = 105;
+  const levels = [20, 40, 60, 80, 100];
+
+  const point = (index, value, extra = 0) => {
+    const angle = -Math.PI / 2 + (Math.PI * 2 * index) / 5;
+    const r = radius * (value / 100) + extra;
+
+    return {
+      x: center + Math.cos(angle) * r,
+      y: center + Math.sin(angle) * r
+    };
+  };
+
+  const grid = levels.map(level => {
+    const points = items
+      .map((_, index) => {
+        const p = point(index, level);
+        return `${p.x},${p.y}`;
+      })
+      .join(" ");
+
+    return `<polygon class="radar-grid" points="${points}" />`;
+  }).join("");
+
+  const axes = items.map((_, index) => {
+    const p = point(index, 100);
+
+    return `
+      <line
+        class="radar-axis"
+        x1="${center}"
+        y1="${center}"
+        x2="${p.x}"
+        y2="${p.y}"
+      />
+    `;
+  }).join("");
+
+  const dataPoints = items.map((item, index) => {
+    const value =
+      typeof item.value === "number"
+        ? Math.max(0, Math.min(100, item.value))
+        : 0;
+
+    const p = point(index, value);
+    return `${p.x},${p.y}`;
+  }).join(" ");
+
+  const dots = items.map((item, index) => {
+    const value =
+      typeof item.value === "number"
+        ? Math.max(0, Math.min(100, item.value))
+        : 0;
+
+    const p = point(index, value);
+
+    return `
+      <circle
+        class="radar-dot"
+        cx="${p.x}"
+        cy="${p.y}"
+        r="4"
+      />
+    `;
+  }).join("");
+
+  const labels = items.map((item, index) => {
+    const p = point(index, 100, 38);
+
+    const value =
+      typeof item.value === "number"
+        ? Math.round(item.value)
+        : "―";
+
+    return `
+      <text
+        class="radar-label"
+        x="${p.x}"
+        y="${p.y}"
+        text-anchor="middle"
+        dominant-baseline="middle"
+      >
+        <tspan x="${p.x}" dy="-0.35em">${item.label}</tspan>
+        <tspan x="${p.x}" dy="1.3em">${value}</tspan>
+      </text>
+    `;
+  }).join("");
+
+  return `
+    <div class="radar-wrap">
+      <svg
+        class="radar-chart"
+        viewBox="0 0 ${size} ${size}"
+        role="img"
+        aria-label="診断結果の五角形グラフ"
+      >
+        ${grid}
+        ${axes}
+
+        <polygon
+          class="radar-data"
+          points="${dataPoints}"
+        />
+
+        ${dots}
+        ${labels}
+      </svg>
+    </div>
+  `;
+}
+
 function render() {
   const q = questions[state.index];
   const progress = Math.round(((state.index + 1) / questions.length) * 100);
@@ -756,6 +870,14 @@ function showPreliminaryResult() {
   // 表示用
   // --------------------
 
+const radarSvg = createRadarChart([
+  { label: "到達度", value: structural },
+  { label: "想定との差", value: gap },
+  { label: "妥協度", value: flex },
+  { label: "推進力", value: P },
+  { label: "追い風度", value: wind }
+]);
+  
   const round = value =>
     value === null
       ? "―"
@@ -781,6 +903,8 @@ function showPreliminaryResult() {
         現在は計算ロジック確認用の表示です。
       </p>
 
+      ${radarSvg}
+      
       <div class="test-result">
 
         <p>
