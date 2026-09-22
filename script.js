@@ -995,70 +995,86 @@ const targetName =
   };
 
   app.innerHTML = `
-    <section class="question-card">
+  <section class="question-card result-screen">
 
-      <div class="question-id">TEST RESULT</div>
+    <div class="question-id">診断結果</div>
 
-      <h1>仮計算結果</h1>
+    <p class="result-target">${targetName}</p>
 
-      <p class="helper">
-        現在は計算ロジック確認用の表示です。
-      </p>
+    <div class="felt-score">
+      <span>体感到達度</span>
+      <strong>${round(felt)}%</strong>
+    </div>
 
-      ${radarSvg}
-      
-      <div class="test-result">
+    <p class="structural-score">
+      構造上の到達度
+      <strong>${round(structural)}%</strong>
+    </p>
 
-        <p>
-          体感到達度：
-          <strong>${round(felt)}%</strong>
-        </p>
+    <div class="type-box">
+      <div class="type-label">あなたの現在地</div>
+      <h1>${profile.type}</h1>
+      <p>${profile.description}</p>
 
-        <p>
-          構造上の到達度：
-          <strong>${round(structural)}%</strong>
-        </p>
+      <div class="tag-list">
+        ${profile.tags.map(tag =>
+          `<span class="result-tag">#${tag}</span>`
+        ).join("")}
+      </div>
+    </div>
 
-        <p>
-          認識差：
-          <strong>
-            ${perceptionGap === null
-              ? "―"
-              : `${perceptionGap >= 0 ? "+" : ""}${Math.round(perceptionGap)}pt`
-            }
-          </strong>
-        </p>
+    ${radarSvg}
 
-        <hr>
-
-        <p>現在地 C：<strong>${round(C)}</strong></p>
-        <p>当初期待 E：<strong>${round(E)}</strong></p>
-        <p>達成要求 M：<strong>${round(M)}</strong></p>
-        <p>理想拡張 I：<strong>${round(I)}</strong></p>
-
-        <hr>
-
-        <p>到達度：<strong>${round(structural)}</strong></p>
-        <p>想定との差：<strong>${round(gap)}</strong></p>
-        <p>妥協度：<strong>${round(flex)}</strong></p>
-        <p>推進力：<strong>${round(P)}</strong></p>
-        <p>追い風度：<strong>${round(wind)}</strong></p>
-
-        <hr>
-
-        <p>
-          時間乖離：
-          <strong>${percentSigned(timeDeviationRate)}</strong>
-        </p>
-
+    <div class="result-values">
+      <div>
+        <span>到達度</span>
+        <strong>${round(structural)}</strong>
       </div>
 
-      <button type="button" id="restartBtn">
-        最初から試す
-      </button>
+      <div>
+        <span>想定との差</span>
+        <strong>${round(gap)}</strong>
+      </div>
 
-    </section>
-  `;
+      <div>
+        <span>妥協度</span>
+        <strong>${round(flex)}</strong>
+      </div>
+
+      <div>
+        <span>推進力</span>
+        <strong>${round(P)}</strong>
+      </div>
+
+      <div>
+        <span>追い風度</span>
+        <strong>${round(wind)}</strong>
+      </div>
+    </div>
+
+    <div class="test-result">
+      <p>
+        認識差：
+        <strong>
+          ${perceptionGap === null
+            ? "―"
+            : `${perceptionGap >= 0 ? "+" : ""}${Math.round(perceptionGap)}pt`
+          }
+        </strong>
+      </p>
+
+      <p>
+        時間乖離：
+        <strong>${percentSigned(timeDeviationRate)}</strong>
+      </p>
+    </div>
+
+    <button type="button" id="restartBtn">
+      もう一度診断する
+    </button>
+
+  </section>
+`;
 
   document
     .getElementById("restartBtn")
