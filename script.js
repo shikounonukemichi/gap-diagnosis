@@ -818,6 +818,15 @@ function getPerceptionInsight({
   };
 }
 
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 function render() {
   const q = questions[state.index];
   const progress = Math.round(((state.index + 1) / questions.length) * 100);
