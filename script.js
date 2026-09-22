@@ -1226,7 +1226,7 @@ const radarSvg = createRadarChart([
 
 const targetName =
   typeof a.Q0 === "string" && a.Q0.trim()
-    ? a.Q0.trim()
+    ? escapeHtml(a.Q0.trim())
     : "今回の目標";
   const indicatorComments = getIndicatorComments({
   structural,
