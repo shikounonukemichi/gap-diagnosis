@@ -1293,9 +1293,13 @@ if (timeDeviationRate === null) {
   app.innerHTML = `
   <section class="question-card result-screen">
 
-    <div class="question-id">診断結果</div>
+    <div class="question-id">DIAGNOSIS RESULT</div>
 
-    <p class="result-target">${targetName}</p>
+<h1 class="result-title">理想・目標到達度診断</h1>
+
+<p class="result-target">
+  「${targetName}」
+</p>
 
     <div class="felt-score">
       <span>体感到達度</span>
