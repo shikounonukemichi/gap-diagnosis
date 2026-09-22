@@ -1339,9 +1339,17 @@ if (timeDeviationRate === null) {
       </div>
     </div>
 
-    ${radarSvg}
+    <div class="radar-heading">
+  <h2>目標との関係を5つの軸で見る</h2>
+  <p>
+    このグラフは「高いほど良い」という評価ではなく、
+    今のあなたと目標との関係の形を表しています。
+  </p>
+</div>
 
-    <div class="result-values">
+${radarSvg}
+
+<div class="result-values">
       <div>
         <span>到達度</span>
         <strong>${round(structural)}</strong>
