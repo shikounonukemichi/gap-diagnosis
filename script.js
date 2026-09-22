@@ -581,6 +581,142 @@ function createRadarChart(items) {
   };
 }
 
+function getIndicatorComments({
+  structural,
+  signedGap,
+  flex,
+  P,
+  wind
+}) {
+  let arrivalText = "";
+
+  if (structural < 25) {
+    arrivalText = "目標全体から見ると、まだ初期段階にあります。";
+  } else if (structural < 50) {
+    arrivalText = "目標の一部は形になっていますが、まだ残っている距離の方が大きい状態です。";
+  } else if (structural < 75) {
+    arrivalText = "目標の中盤から後半に入り、すでに相当部分が形になっています。";
+  } else {
+    arrivalText = "目標として設定した状態に、かなり近いところまで来ています。";
+  }
+
+  let gapText = "";
+
+  if (signedGap === null) {
+    gapText = "当初の想定が明確でないため、比較できる材料が限られています。";
+  } else if (signedGap <= -0.25) {
+    gapText = "当初の想定より、進み方は前倒しになっています。";
+  } else if (signedGap <= 0.15) {
+    gapText = "現在の位置やペースは、当初の想定から大きく外れていません。";
+  } else if (signedGap <= 0.5) {
+    gapText = "当初の想定より、やや遅れが生じています。";
+  } else {
+    gapText = "当初思い描いていた位置やペースとの間に、大きな差があります。";
+  }
+
+  let flexText = "";
+
+  if (flex < 25) {
+    flexText = "達成と認める条件がかなり明確で、完成形へのこだわりが強い傾向です。";
+  } else if (flex < 50) {
+    flexText = "多少の違いは許容できますが、理想に近い形での実現を重視しています。";
+  } else if (flex < 75) {
+    flexText = "結果と過程の両方を見ながら、ある程度柔軟に達成を判断できます。";
+  } else {
+    flexText = "当初の形にこだわりすぎず、目的が満たされれば達成として受け入れやすい傾向です。";
+  }
+
+  let propulsionText = "";
+
+  if (P < 25) {
+    propulsionText = "現在は行動や進行がかなり弱く、目標への動きが止まり気味です。";
+  } else if (P < 50) {
+    propulsionText = "動きはありますが、継続性や次の一手にはまだ不安定さがあります。";
+  } else if (P < 75) {
+    propulsionText = "目標に向けた行動が続いており、前進する力は維持されています。";
+  } else {
+    propulsionText = "行動・継続・次の一手が揃っており、現在の推進力はかなり強い状態です。";
+  }
+
+  let windText = "";
+
+  if (wind < 25) {
+    windText = "努力とは別の外部要因から、かなり強い逆風を受けている状態です。";
+  } else if (wind < 45) {
+    windText = "どちらかといえば、外部環境は逆風寄りです。";
+  } else if (wind <= 55) {
+    windText = "幸運と障害はおおむね均衡しており、外部要因はほぼ中立です。";
+  } else if (wind < 75) {
+    windText = "外部環境には、やや追い風が働いています。";
+  } else {
+    windText = "偶然や巡り合わせが、かなり強い追い風として働いています。";
+  }
+
+  return [
+    {
+      label: "到達度",
+      value: structural,
+      text: arrivalText
+    },
+    {
+      label: "想定との差",
+      value:
+        signedGap === null
+          ? null
+          : clamp(signedGap * 100, 0, 100),
+      text: gapText
+    },
+    {
+      label: "妥協度",
+      value: flex,
+      text: flexText
+    },
+    {
+      label: "推進力",
+      value: P,
+      text: propulsionText
+    },
+    {
+      label: "追い風度",
+      value: wind,
+      text: windText
+    }
+  ];
+}
+
+
+function formatDuration(answer, prefix = "") {
+  if (answer === "not_started") {
+    return "まだ具体的には始めていない";
+  }
+
+  if (answer === "unset") {
+    return "特に期限を決めていなかった";
+  }
+
+  if (answer === "already_reached") {
+    return "すでに到達している";
+  }
+
+  if (answer === "unknown") {
+    return "見通しが立っていない";
+  }
+
+  if (!answer || typeof answer !== "object") {
+    return "―";
+  }
+
+  const amount = answer.amount;
+
+  let unit = "";
+
+  if (answer.unit === "days") unit = "日";
+  if (answer.unit === "months") unit = "ヶ月";
+  if (answer.unit === "years") unit = "年";
+
+  return `${prefix}${amount}${unit}`;
+}
+
 function render() {
   const q = questions[state.index];
   const progress = Math.round(((state.index + 1) / questions.length) * 100);
