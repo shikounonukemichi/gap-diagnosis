@@ -1118,6 +1118,43 @@ const targetName =
   typeof a.Q0 === "string" && a.Q0.trim()
     ? a.Q0.trim()
     : "今回の目標";
+  const indicatorComments = getIndicatorComments({
+  structural,
+  signedGap,
+  flex,
+  P,
+  wind
+});
+
+let timeComment = "";
+
+if (timeDeviationRate === null) {
+  if (a.T3 === "unset") {
+    timeComment =
+      "当初から期限を決めていなかったため、予定との時間差は算出していません。";
+  } else if (a.T4 === "unknown") {
+    timeComment =
+      "現在の到達時期が見通せないため、当初の予定との時間差は算出できません。";
+  } else if (a.T4 === "already_reached") {
+    timeComment =
+      "すでに到達しています。到達した時期を尋ねていないため、実際にかかった期間との比較は行っていません。";
+  } else {
+    timeComment =
+      "時間については、比較に必要な情報が十分にありません。";
+  }
+} else if (timeDeviationRate >= 0.5) {
+  timeComment =
+    "現在の見込みでは、到達までの期間は当初の想定よりかなり長くなっています。";
+} else if (timeDeviationRate >= 0.15) {
+  timeComment =
+    "現在の見込みでは、到達までの期間は当初の想定よりやや長くなっています。";
+} else if (timeDeviationRate <= -0.2) {
+  timeComment =
+    "現在の見込みでは、当初の想定より早く到達するペースです。";
+} else {
+  timeComment =
+    "到達までの時間は、おおむね当初想定していた範囲に収まっています。";
+}
   
   const round = value =>
     value === null
