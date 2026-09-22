@@ -963,6 +963,22 @@ const radarSvg = createRadarChart([
   { label: "推進力", value: P },
   { label: "追い風度", value: wind }
 ]);
+
+  const profile = getResultProfile({
+  structural,
+  felt,
+  gap,
+  flex,
+  P,
+  wind,
+  I,
+  timeDeviationRate
+});
+
+const targetName =
+  typeof a.Q0 === "string" && a.Q0.trim()
+    ? a.Q0.trim()
+    : "今回の目標";
   
   const round = value =>
     value === null
