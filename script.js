@@ -343,6 +343,41 @@ function average(values) {
   return nums.reduce((a, b) => a + b, 0) / nums.length;
 }
 
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function durationToDays(value) {
+  if (!value || typeof value !== "object") return null;
+
+  const amount = Number(value.amount);
+
+  if (!amount || amount <= 0) return null;
+
+  if (value.unit === "days") return amount;
+  if (value.unit === "months") return amount * 30.44;
+  if (value.unit === "years") return amount * 365.25;
+
+  return null;
+}
+
+function weightedAverage(items) {
+  const valid = items.filter(
+    item =>
+      typeof item.value === "number" &&
+      !Number.isNaN(item.value)
+  );
+
+  if (!valid.length) return null;
+
+  const weightSum = valid.reduce((sum, item) => sum + item.weight, 0);
+
+  return valid.reduce(
+    (sum, item) => sum + item.value * item.weight,
+    0
+  ) / weightSum;
+}
+
 function render() {
   const q = questions[state.index];
   const progress = Math.round(((state.index + 1) / questions.length) * 100);
@@ -552,56 +587,260 @@ function isAnswered(q) {
 function showPreliminaryResult() {
   const a = state.answers;
 
+  // --------------------
+  // 基本指標
+  // --------------------
+
   const C = average([a.C1, a.C2, a.C3, a.C4, a.C5]);
   const E = average([a.E1, a.E2, a.E3]);
   const M = average([a.M1, a.M2, a.M3, a.M4]);
   const I = average([a.I1, a.I2, a.I3, a.I4]);
   const P = average([a.P1, a.P2, a.P3]);
 
-  const flex = M === null ? null : 100 - M;
+  const flex =
+    M === null
+      ? null
+      : 100 - M;
 
+  // 理想の広がりによる補正は最大20%
   const structural =
     C === null || I === null
       ? null
       : C * (1 - 0.2 * (I / 100));
 
+  // --------------------
+  // 時間計算
+  // --------------------
+
+  const elapsed = durationToDays(a.T1);
+  const originalPlan = durationToDays(a.T3);
+  const remaining = durationToDays(a.T4);
+
+  let forecastTotal = null;
+  let timeDeviationRate = null;
+
+  if (
+    elapsed !== null &&
+    remaining !== null
+  ) {
+    forecastTotal = elapsed + remaining;
+  }
+
+  if (
+    forecastTotal !== null &&
+    originalPlan !== null &&
+    originalPlan > 0
+  ) {
+    timeDeviationRate =
+      (forecastTotal - originalPlan) / originalPlan;
+  }
+
+  // --------------------
+  // 想定との差
+  // 正：想定より遅い
+  // 負：想定より早い
+  // --------------------
+
+  let expectationSigned = null;
+
+  if (C !== null && E !== null) {
+    expectationSigned =
+      clamp((E - C) / 50, -1, 1);
+  }
+
+  let timeSigned = null;
+
+  if (timeDeviationRate !== null) {
+    timeSigned =
+      clamp(timeDeviationRate, -1, 1);
+  }
+
+  let paceSigned = null;
+
+  if (typeof a.P4 === "number") {
+    // P4:
+    // -2 = かなり遅い
+    // -1 = 少し遅い
+    //  0 = 想定通り
+    // +1 = 少し早い
+    // +2 = かなり早い
+
+    paceSigned = -(a.P4 / 2);
+  }
+
+  const signedGap = weightedAverage([
+    { value: expectationSigned, weight: 0.5 },
+    { value: timeSigned, weight: 0.3 },
+    { value: paceSigned, weight: 0.2 }
+  ]);
+
+  // レーダー表示用
+  // 想定以上・想定通りなら0
+  // 遅れるほど100へ
+  const gap =
+    signedGap === null
+      ? null
+      : clamp(signedGap * 100, 0, 100);
+
+  // --------------------
+  // 追い風度
+  // --------------------
+
   const wind =
-    typeof a.L1 === "number" && typeof a.L2 === "number"
-      ? 50 + (a.L2 - a.L1) / 2
+    typeof a.L1 === "number" &&
+    typeof a.L2 === "number"
+      ? clamp(
+          50 + (a.L2 - a.L1) / 2,
+          0,
+          100
+        )
       : null;
 
+  // --------------------
+  // 体感到達度
+  // --------------------
+
+  // 1. 想定とのズレ
+  // 最大 ±15%
+  const expectationFactor =
+    signedGap === null
+      ? 1
+      : 1 - 0.15 * signedGap;
+
+  // 2. 達成要求
+  // 柔軟なら最大 +10%
+  // 厳しければ最大 -10%
+  const requirementFactor =
+    M === null
+      ? 1
+      : 1 + 0.10 * ((50 - M) / 50);
+
+  // 3. 運・外部要因
+  let luckFactor = 1;
+
+  if (
+    typeof a.L1 === "number" &&
+    typeof a.L2 === "number" &&
+    typeof a.L3 === "number"
+  ) {
+    const balance =
+      (a.L2 - a.L1) / 100;
+
+    // 運が重要だと思うほど
+    // 追い風・逆風が心理に強く効く
+    const impact =
+      0.10 + 0.10 * (a.L3 / 100);
+
+    luckFactor =
+      1 + balance * impact;
+  }
+
+  const felt =
+    structural === null
+      ? null
+      : clamp(
+          structural *
+          expectationFactor *
+          requirementFactor *
+          luckFactor,
+          0,
+          100
+        );
+
+  const perceptionGap =
+    structural !== null && felt !== null
+      ? felt - structural
+      : null;
+
+  // --------------------
+  // 表示用
+  // --------------------
+
   const round = value =>
-    value === null ? "―" : Math.round(value);
+    value === null
+      ? "―"
+      : Math.round(value);
+
+  const percentSigned = value => {
+    if (value === null) return "―";
+
+    const p = Math.round(value * 100);
+
+    if (p > 0) return `+${p}%`;
+    return `${p}%`;
+  };
 
   app.innerHTML = `
     <section class="question-card">
+
       <div class="question-id">TEST RESULT</div>
+
       <h1>仮計算結果</h1>
 
       <p class="helper">
-        まだ最終結果画面ではありません。質問データと基本計算が正常に動くかを見るための確認表示です。
+        現在は計算ロジック確認用の表示です。
       </p>
 
       <div class="test-result">
+
+        <p>
+          体感到達度：
+          <strong>${round(felt)}%</strong>
+        </p>
+
+        <p>
+          構造上の到達度：
+          <strong>${round(structural)}%</strong>
+        </p>
+
+        <p>
+          認識差：
+          <strong>
+            ${perceptionGap === null
+              ? "―"
+              : `${perceptionGap >= 0 ? "+" : ""}${Math.round(perceptionGap)}pt`
+            }
+          </strong>
+        </p>
+
+        <hr>
+
         <p>現在地 C：<strong>${round(C)}</strong></p>
         <p>当初期待 E：<strong>${round(E)}</strong></p>
         <p>達成要求 M：<strong>${round(M)}</strong></p>
         <p>理想拡張 I：<strong>${round(I)}</strong></p>
-        <p>推進力：<strong>${round(P)}</strong></p>
-        <p>妥協度：<strong>${round(flex)}</strong></p>
+
+        <hr>
+
         <p>到達度：<strong>${round(structural)}</strong></p>
+        <p>想定との差：<strong>${round(gap)}</strong></p>
+        <p>妥協度：<strong>${round(flex)}</strong></p>
+        <p>推進力：<strong>${round(P)}</strong></p>
         <p>追い風度：<strong>${round(wind)}</strong></p>
+
+        <hr>
+
+        <p>
+          時間乖離：
+          <strong>${percentSigned(timeDeviationRate)}</strong>
+        </p>
+
       </div>
 
-      <button type="button" id="restartBtn">最初から試す</button>
+      <button type="button" id="restartBtn">
+        最初から試す
+      </button>
+
     </section>
   `;
 
-  document.getElementById("restartBtn").addEventListener("click", () => {
-    state.index = 0;
-    state.answers = {};
-    render();
-  });
+  document
+    .getElementById("restartBtn")
+    .addEventListener("click", () => {
+      state.index = 0;
+      state.answers = {};
+      render();
+    });
 }
 
 render();
