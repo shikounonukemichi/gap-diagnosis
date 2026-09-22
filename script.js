@@ -1227,6 +1227,16 @@ const targetName =
   wind
 });
 
+const perceptionInsight = getPerceptionInsight({
+  structural,
+  felt,
+  signedGap,
+  M,
+  L1: a.L1,
+  L2: a.L2,
+  L3: a.L3
+});
+  
 let timeComment = "";
 
 if (timeDeviationRate === null) {
