@@ -516,3 +516,22 @@ select {
   font-size: 1.2rem !important;
   color: #999 !important;
 }
+
+.radar-heading {
+  margin: 34px 0 4px;
+  text-align: center;
+}
+
+.radar-heading h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  color: #30354b;
+}
+
+.radar-heading p {
+  max-width: 480px;
+  margin: 0 auto;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: #777;
+}
