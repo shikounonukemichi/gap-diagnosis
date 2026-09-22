@@ -535,3 +535,16 @@ select {
   line-height: 1.7;
   color: #777;
 }
+
+.result-title {
+  margin: 8px 0 4px !important;
+  font-size: 1.35rem !important;
+  text-align: center !important;
+}
+
+.result-target {
+  margin: 6px 0 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #555;
+}
