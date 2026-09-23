@@ -906,7 +906,7 @@ function renderStartScreen() {
       </button>
 
       <p class="start-footer">
-        意識を解き明かす<br>
+        意識を解き明かすYouTubeチャンネル<br>
         <strong>思考の抜け道</strong>
       </p>
 
