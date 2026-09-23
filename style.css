@@ -1164,23 +1164,25 @@ select {
 
   /* 共有 */
 
-  .share-buttons {
-    grid-template-columns: 1fr 1fr;
-  }
+  .share-section {
+  padding: 18px 12px;
+}
 
-  .share-main {
-    grid-column: 1 / -1;
+.share-buttons {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
 
-    padding: 15px 12px;
+.share-buttons button {
+  min-height: 44px;
+  padding: 9px 5px;
+  font-size: 0.72rem;
+}
 
-    font-size: 0.92rem;
-  }
-
-  .share-sub {
-    padding: 13px 8px;
-
-    font-size: 0.8rem;
-  }
+#restartBtn {
+  width: min(86%, 340px);
+  min-width: 0;
+}
 
 }
 
