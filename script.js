@@ -1554,4 +1554,4 @@ ${radarSvg}
     });
 }
 
-render();
+renderStartScreen();
