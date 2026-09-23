@@ -1426,16 +1426,27 @@ if (timeDeviationRate === null) {
 </div>
 
     <div class="type-box">
-      <div class="type-label">あなたの現在地</div>
-      <h1>${profile.type}</h1>
-      <p>${profile.description}</p>
 
-      <div class="tag-list">
-        ${profile.tags.map(tag =>
-          `<span class="result-tag">#${tag}</span>`
-        ).join("")}
-      </div>
-    </div>
+  <div class="type-label">
+    YOUR CURRENT TYPE
+  </div>
+
+  <div class="type-heading">
+    <span>あなたの現在地タイプ</span>
+    <h2>${profile.type}</h2>
+  </div>
+
+  <p class="type-description">
+    ${profile.description}
+  </p>
+
+  <div class="tag-list">
+    ${profile.tags.map(tag =>
+      `<span class="result-tag">#${tag}</span>`
+    ).join("")}
+  </div>
+
+</div>
 
     <div class="radar-heading">
   <h2>目標との関係を5つの軸で見る</h2>
