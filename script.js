@@ -869,7 +869,7 @@ function renderStartScreen() {
           <span>この診断で見るもの</span>
 
           <strong>
-            「構造上の現在地」と<br>
+            「回答から推定した現在地」と<br>
             「自分が感じている現在地」のズレ
           </strong>
         </div>
@@ -1403,7 +1403,7 @@ if (timeDeviationRate === null) {
     </div>
 
     <p class="structural-score">
-      構造上の到達度
+      推定到達度
       <strong>${round(structural)}%</strong>
     </p>
 
@@ -1414,7 +1414,7 @@ if (timeDeviationRate === null) {
 
   <div class="perception-numbers">
     <span>
-      構造上
+      推定
       <strong>${round(structural)}%</strong>
     </span>
 
