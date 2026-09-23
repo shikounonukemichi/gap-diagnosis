@@ -841,14 +841,16 @@ function renderStartScreen() {
         <div class="brand-text">思考の抜け道</div>
       </div>
 
-      <div class="start-label">
-        VISUALIZE YOUR GAP
-      </div>
+      <div class="start-hero">
+  <div class="start-label">
+    VISUALIZE YOUR GAP
+  </div>
 
-      <h1 class="start-title">
-        理想・目標<br>
-        到達度診断
-      </h1>
+  <h1 class="start-title">
+    理想・目標<br>
+    到達度診断
+  </h1>
+</div>
 
       <p class="start-lead">
         その目標、本当はどこまで進んでいるのでしょうか。
