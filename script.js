@@ -332,7 +332,8 @@ const questions = [
 
 const state = {
   index: 0,
-  answers: {}
+  answers: {},
+  started: false
 };
 
 const app = document.getElementById("app");
