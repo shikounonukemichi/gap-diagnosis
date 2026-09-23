@@ -834,6 +834,23 @@ select {
   font-size: 0.82rem;
 }
 
+.start-hero {
+  margin: 0 -8px 22px;
+  padding: 22px 18px 24px;
+  border-radius: 18px;
+  background: #313c73;
+}
+
+.start-hero .start-label {
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.start-hero .start-title {
+  margin: 0;
+  color: #fff;
+}
+
 @media (max-width: 600px) {
   .container {
     padding-top: 24px;
