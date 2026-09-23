@@ -1422,19 +1422,7 @@ if (timeDeviationRate === null) {
 
   <p>${perceptionInsight.body}</p>
 
-  <div class="perception-numbers">
-    <span>
-      推定
-      <strong>${round(structural)}%</strong>
-    </span>
-
-    <span class="perception-arrow">→</span>
-
-    <span>
-      体感
-      <strong>${round(felt)}%</strong>
-    </span>
-  </div>
+  
 </div>
 
     <div class="type-box">
