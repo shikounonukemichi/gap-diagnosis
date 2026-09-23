@@ -580,7 +580,7 @@ select {
 
 .start-hero {
   margin: 0 -32px 22px;
-  padding: 22px 18px 24px;
+  padding: 18px 18px 20px;
   background: #313c73;
 }
 
@@ -649,7 +649,8 @@ select {
 
 .start-concept strong {
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
   color: #313c73;
 }
 
@@ -734,7 +735,7 @@ select {
   .start-hero {
     margin-left: -20px;
     margin-right: -20px;
-    padding: 20px 16px 22px;
+    padding: 18px 16px 20px;
   }
 
   .start-title {
