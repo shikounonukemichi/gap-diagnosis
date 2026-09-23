@@ -1538,6 +1538,18 @@ ${radarSvg}
       もう一度診断する
     </button>
 
+    <p class="result-channel">
+  意識を解き明かすYouTubeチャンネル<br>
+  <a
+    href="https://www.youtube.com/@思考の抜け道"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="channel-link"
+  >
+    思考の抜け道
+  </a>
+</p>
+
   </section>
 `;
 
