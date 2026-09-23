@@ -737,3 +737,105 @@ select {
     gap: 6px;
   }
 }
+.start-screen {
+  text-align: center;
+}
+
+.start-brand {
+  margin-bottom: 18px;
+}
+
+.start-kurage {
+  width: 42px;
+  height: 42px;
+}
+
+.brand-text {
+  font-size: 0.88rem;
+}
+
+.start-label {
+  margin-bottom: 6px;
+}
+
+.start-title {
+  font-size: 2.15rem;
+  line-height: 1.25;
+}
+
+.start-lead {
+  margin: 16px 0 8px;
+  font-size: 1rem;
+}
+
+.start-description {
+  max-width: 520px;
+  margin: 0 auto 20px;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.start-concept {
+  margin: 20px 0 16px;
+  padding: 18px 16px;
+  text-align: center;
+}
+
+.start-concept > span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.72rem;
+  color: #777;
+}
+
+.start-concept strong {
+  display: block;
+  font-size: 1.2rem;
+  color: #313c73;
+}
+
+.concept-cross {
+  display: inline-block;
+  margin: 0 7px;
+  color: #9298ad;
+}
+
+.start-concept p {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+.start-meta {
+  margin: 16px 0;
+}
+
+.start-button {
+  margin-top: 0;
+}
+
+.start-note-short {
+  margin: 14px 0 0;
+  font-size: 0.7rem;
+  color: #999;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .start-title {
+    font-size: 1.9rem;
+  }
+
+  .start-brand {
+    margin-bottom: 16px;
+  }
+
+  .start-description {
+    font-size: 0.84rem;
+  }
+}
