@@ -895,9 +895,16 @@ function renderStartScreen() {
       </button>
 
       <p class="start-footer">
-        意識を解き明かすYouTubeチャンネル<br>
-        <strong>思考の抜け道</strong>
-      </p>
+  意識を解き明かすYouTubeチャンネル<br>
+  <a
+    href="https://www.youtube.com/@思考の抜け道"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="channel-link"
+  >
+    思考の抜け道
+  </a>
+</p>
 
     </section>
   `;
