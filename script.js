@@ -859,6 +859,10 @@ function renderStartScreen() {
         あなたの「足りない」を可視化します。
       </p>
 
+      <p class="start-caution">
+        ※良い・悪いを判定する診断ではありません。
+      </p>
+
       <div class="start-concept">
         <span>この診断で比べるもの</span>
 
@@ -888,8 +892,9 @@ function renderStartScreen() {
         診断をはじめる
       </button>
 
-      <p class="start-note-short">
-        ※良い・悪いを判定する診断ではありません。
+      <p class="start-footer">
+        意識を解き明かすYouTubeチャンネル<br>
+        <strong>思考の抜け道</strong>
       </p>
 
     </section>
