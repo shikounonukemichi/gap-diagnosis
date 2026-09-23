@@ -708,11 +708,11 @@ select {
 ========================= */
 
 .share-section {
-  margin: 40px 0 24px;
+  margin: 38px 0 32px;
+  padding: 20px 18px;
 
-  padding-top: 28px;
-
-  border-top: 1px solid #e5e7ef;
+  background: #f5f6fb;
+  border-radius: 18px;
 
   text-align: center;
 }
@@ -720,60 +720,87 @@ select {
 .share-title {
   margin-bottom: 14px;
 
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
 
-  color: #555;
+  color: #656b82;
 }
 
 .share-buttons {
   display: grid;
-
-  grid-template-columns: 1.3fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
 
   gap: 8px;
 }
 
 .share-buttons button {
   width: 100%;
+  min-height: 46px;
 
-  padding: 13px 10px;
+  padding: 10px 8px;
 
-  font-size: 0.82rem;
+  border-radius: 12px;
+
+  font-size: 0.78rem;
+  font-weight: 700;
 }
+
+/* 標準共有 */
 
 .share-main {
   background: #313c73;
-
   color: white;
 }
 
+/* X・リンクコピー */
+
 .share-sub {
-  background: #e8ebf4;
+  background: white;
+
+  border: 1px solid #d8dce8;
 
   color: #313c73;
 }
 
+.share-sub:hover {
+  opacity: 1;
+
+  background: #eceff7;
+}
+
 .share-message {
-  min-height: 1.4em;
+  min-height: 1.3em;
 
-  margin: 10px 0 0;
+  margin: 9px 0 0;
 
-  font-size: 0.72rem;
-  line-height: 1.5;
+  font-size: 0.7rem;
+  line-height: 1.4;
 
   color: #777;
 }
 
 
-/* もう一度診断 */
+/* =========================
+   RESTART
+========================= */
 
 #restartBtn {
-  margin-top: 4px;
+  display: block;
 
-  background: #e8ebf4;
+  min-width: 290px;
 
-  color: #313c73;
+  margin: 0 auto;
+
+  padding: 17px 38px;
+
+  background: #313c73;
+
+  color: white;
+
+  font-size: 1rem;
+
+  box-shadow:
+    0 8px 22px rgba(49, 60, 115, 0.14);
 }
 
 
