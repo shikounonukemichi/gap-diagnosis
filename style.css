@@ -815,10 +815,23 @@ select {
   margin-top: 0;
 }
 
-.start-note-short {
-  margin: 14px 0 0;
-  font-size: 0.7rem;
+.start-caution {
+  margin: -10px 0 18px;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: #929292;
+}
+
+.start-footer {
+  margin: 22px 0 0;
+  font-size: 0.72rem;
+  line-height: 1.65;
   color: #999;
+}
+
+.start-footer strong {
+  color: #737990;
+  font-size: 0.82rem;
 }
 
 @media (max-width: 600px) {
