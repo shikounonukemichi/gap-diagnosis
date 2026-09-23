@@ -226,11 +226,7 @@ select {
   text-align: center;
 }
 
-.result-target {
-  margin: 8px 0 22px;
-  font-size: 0.95rem;
-  color: #666;
-}
+
 
 .felt-score {
   margin: 14px 0 4px;
