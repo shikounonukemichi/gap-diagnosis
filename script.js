@@ -1546,12 +1546,13 @@ ${radarSvg}
 `;
 
   document
-    .getElementById("restartBtn")
-    .addEventListener("click", () => {
-      state.index = 0;
-      state.answers = {};
-      render();
-    });
+  .getElementById("restartBtn")
+  .addEventListener("click", () => {
+    state.index = 0;
+    state.answers = {};
+    state.started = false;
+    renderStartScreen();
+  });
 }
 
 renderStartScreen();
