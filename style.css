@@ -754,3 +754,22 @@ select {
     gap: 6px;
   }
 }
+
+.channel-link {
+  color: #737990;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(115, 121, 144, 0.35);
+}
+
+.channel-link:hover {
+  color: #313c73;
+  border-bottom-color: #313c73;
+}
+
+.result-channel {
+  margin: 24px 0 0;
+  font-size: 0.72rem;
+  line-height: 1.65;
+  color: #999;
+}
