@@ -1385,23 +1385,37 @@ if (timeDeviationRate === null) {
   app.innerHTML = `
   <section class="question-card result-screen">
 
-    <div class="question-id">DIAGNOSIS RESULT</div>
+   <div class="result-hero">
 
-<h1 class="result-title">理想・目標到達度診断</h1>
+  <div class="result-hero-label">
+    DIAGNOSIS RESULT
+  </div>
 
-<p class="result-target">
-  「${targetName}」
-</p>
+  <h1>
+    理想・目標 到達度診断
+  </h1>
 
-    <div class="felt-score">
+  <p class="result-hero-target">
+    「${targetName}」
+  </p>
+
+  <div class="result-score-grid">
+
+    <div class="result-score-item">
+      <span>推定到達度</span>
+      <strong>${round(structural)}%</strong>
+    </div>
+
+    <div class="result-score-divider"></div>
+
+    <div class="result-score-item">
       <span>体感到達度</span>
       <strong>${round(felt)}%</strong>
     </div>
 
-    <p class="structural-score">
-      推定到達度
-      <strong>${round(structural)}%</strong>
-    </p>
+  </div>
+
+</div>
 
 <div class="perception-box">
   <h2>${perceptionInsight.headline}</h2>
