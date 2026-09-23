@@ -838,10 +838,7 @@ function renderStartScreen() {
           alt=""
           class="start-kurage"
         >
-
-        <div class="brand-text">
-          <span>思考の抜け道</span>
-        </div>
+        <div class="brand-text">思考の抜け道</div>
       </div>
 
       <div class="start-label">
@@ -849,7 +846,8 @@ function renderStartScreen() {
       </div>
 
       <h1 class="start-title">
-        理想・目標<br class="mobile-break">到達度診断
+        理想・目標<br>
+        到達度診断
       </h1>
 
       <p class="start-lead">
@@ -857,44 +855,29 @@ function renderStartScreen() {
       </p>
 
       <p class="start-description">
-        この診断では、現在の進捗だけでなく、
-        当初思い描いていた状態、達成の条件、
-        理想の広がり、現在の推進力、
-        そして運や外部環境まで含めて分析します。
+        現在地・当初の想定・達成条件・推進力・外部環境を分解し、
+        あなたの「足りない」を可視化します。
       </p>
 
       <div class="start-concept">
+        <span>この診断で比べるもの</span>
 
-        <div class="concept-main">
-          <span>この診断で見るもの</span>
-
-          <strong>
-            「回答から推定した現在地」と<br>
-            「自分が感じている現在地」のズレ
-          </strong>
-        </div>
+        <strong>
+          推定到達度
+          <span class="concept-cross">×</span>
+          体感到達度
+        </strong>
 
         <p>
-          「まだ全然足りない」と感じていても、
-          回答を分解すると、すでにかなり進んでいることがあります。
-          反対に、手応えはあっても、目標全体から見ると
-          まだ距離が残っていることもあります。
-        </p>
-
-      </div>
-
-      <div class="start-note">
-        <strong>これは、良い・悪いを判定する診断ではありません。</strong>
-        <p>
-          あなたが目標をどう捉え、
-          どこに「足りなさ」を感じているのかを可視化するための診断です。
+          回答から推定した現在地と、
+          自分が感じている現在地のズレを見ます。
         </p>
       </div>
 
       <div class="start-meta">
         <span>全 ${questions.length} 項目</span>
         <span>選択式中心</span>
-        <span>結果を5つの軸で可視化</span>
+        <span>5軸で可視化</span>
       </div>
 
       <button
@@ -905,9 +888,8 @@ function renderStartScreen() {
         診断をはじめる
       </button>
 
-      <p class="start-footer">
-        意識を解き明かすYouTubeチャンネル<br>
-        <strong>思考の抜け道</strong>
+      <p class="start-note-short">
+        ※良い・悪いを判定する診断ではありません。
       </p>
 
     </section>
