@@ -828,6 +828,101 @@ function escapeHtml(text) {
     .replaceAll("'", "&#039;");
 }
 
+function renderStartScreen() {
+  app.innerHTML = `
+    <section class="start-screen">
+
+      <div class="start-brand">
+        <img
+          src="kurage.png"
+          alt=""
+          class="start-kurage"
+        >
+
+        <div class="brand-text">
+          <span>思考の抜け道</span>
+        </div>
+      </div>
+
+      <div class="start-label">
+        VISUALIZE YOUR GAP
+      </div>
+
+      <h1 class="start-title">
+        理想・目標<br class="mobile-break">到達度診断
+      </h1>
+
+      <p class="start-lead">
+        その目標、本当はどこまで進んでいるのでしょうか。
+      </p>
+
+      <p class="start-description">
+        この診断では、現在の進捗だけでなく、
+        当初思い描いていた状態、達成の条件、
+        理想の広がり、現在の推進力、
+        そして運や外部環境まで含めて分析します。
+      </p>
+
+      <div class="start-concept">
+
+        <div class="concept-main">
+          <span>この診断で見るもの</span>
+
+          <strong>
+            「構造上の現在地」と<br>
+            「自分が感じている現在地」のズレ
+          </strong>
+        </div>
+
+        <p>
+          「まだ全然足りない」と感じていても、
+          回答を分解すると、すでにかなり進んでいることがあります。
+          反対に、手応えはあっても、目標全体から見ると
+          まだ距離が残っていることもあります。
+        </p>
+
+      </div>
+
+      <div class="start-note">
+        <strong>これは、良い・悪いを判定する診断ではありません。</strong>
+        <p>
+          あなたが目標をどう捉え、
+          どこに「足りなさ」を感じているのかを可視化するための診断です。
+        </p>
+      </div>
+
+      <div class="start-meta">
+        <span>全 ${questions.length} 項目</span>
+        <span>選択式中心</span>
+        <span>結果を5つの軸で可視化</span>
+      </div>
+
+      <button
+        type="button"
+        id="startBtn"
+        class="start-button"
+      >
+        診断をはじめる
+      </button>
+
+      <p class="start-footer">
+        意識を解き明かす<br>
+        <strong>思考の抜け道</strong>
+      </p>
+
+    </section>
+  `;
+
+  document
+    .getElementById("startBtn")
+    .addEventListener("click", () => {
+      state.started = true;
+      state.index = 0;
+      state.answers = {};
+      render();
+    });
+}
+
 function render() {
   const q = questions[state.index];
   const progress = Math.round(((state.index + 1) / questions.length) * 100);
