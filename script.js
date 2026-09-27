@@ -1633,7 +1633,8 @@ ${profile.type}
   const xShareBtn = document.getElementById("xShareBtn");
   const copyBtn = document.getElementById("copyBtn");
   const shareMessage = document.getElementById("shareMessage");
-
+const saveCardBtn = document.getElementById("saveCardBtn");
+const saveCardMessage = document.getElementById("saveCardMessage");
   function showShareMessage(message) {
     shareMessage.textContent = message;
 
