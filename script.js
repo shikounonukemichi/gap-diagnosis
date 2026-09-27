@@ -1563,46 +1563,6 @@ ${radarSvg}
   }
 </div>
 
-    
-
-    <div class="share-section">
-
-      <div class="share-title">
-        この結果を共有
-      </div>
-
-      <div class="share-buttons">
-
-        <button
-          type="button"
-          id="shareBtn"
-          class="share-main"
-        >
-          結果を共有
-        </button>
-
-        <button
-          type="button"
-          id="xShareBtn"
-          class="share-sub"
-        >
-          Xで共有
-        </button>
-
-        <button
-          type="button"
-          id="copyBtn"
-          class="share-sub"
-        >
-          リンクをコピー
-        </button>
-
-      </div>
-
-      <p class="share-message" id="shareMessage"></p>
-
-    </div>
-
     <div class="share-result-card">
 
       <div class="share-card-brand">
@@ -1670,6 +1630,44 @@ ${radarSvg}
       <p class="save-card-message" id="saveCardMessage"></p>
     </div>
 
+<div class="share-section">
+
+      <div class="share-title">
+        この結果を共有
+      </div>
+
+      <div class="share-buttons">
+
+        <button
+          type="button"
+          id="shareBtn"
+          class="share-main"
+        >
+          結果を共有
+        </button>
+
+        <button
+          type="button"
+          id="xShareBtn"
+          class="share-sub"
+        >
+          Xで共有
+        </button>
+
+        <button
+          type="button"
+          id="copyBtn"
+          class="share-sub"
+        >
+          リンクをコピー
+        </button>
+
+      </div>
+
+      <p class="share-message" id="shareMessage"></p>
+
+    </div>
+    
     <button type="button" id="restartBtn">
       もう一度診断する
     </button>
