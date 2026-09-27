@@ -1407,61 +1407,6 @@ ${profile.type}
 
       </div>
 
-<div class="share-result-card">
-
-  <div class="share-card-brand">
-    <img src="kurage.png" alt="">
-    <span>思考の抜け道</span>
-  </div>
-
-  <div class="share-card-label">
-    理想・目標 到達度診断
-  </div>
-
-  <div class="share-card-target">
-    「${targetName}」
-  </div>
-
-  <div class="share-card-type-label">
-    YOUR CURRENT TYPE
-  </div>
-
-  <div class="share-card-type">
-    ${profile.type}
-  </div>
-
-  <div class="share-card-scores">
-
-    <div>
-      <span>推定到達度</span>
-      <strong>${round(structural)}%</strong>
-    </div>
-
-    <div class="share-card-score-line"></div>
-
-    <div>
-      <span>体感到達度</span>
-      <strong>${round(felt)}%</strong>
-    </div>
-
-  </div>
-
-  <div class="share-card-radar">
-    ${radarSvg}
-  </div>
-
-  <div class="share-card-tags">
-    ${profile.tags.map(tag =>
-      `<span>#${tag}</span>`
-    ).join("")}
-  </div>
-
-  <div class="share-card-footer">
-    回答から見える現在地と、感じている現在地のズレを可視化
-  </div>
-
-</div>
-
       <div class="radar-heading">
         <h2>目標との関係を5つの軸で見る</h2>
         <p>
@@ -1559,7 +1504,7 @@ ${profile.type}
         }
       </div>
 
-      <div class="share-section">
+           <div class="share-section">
 
         <div class="share-title">
           この結果を共有
@@ -1596,6 +1541,63 @@ ${profile.type}
         <p class="share-message" id="shareMessage"></p>
 
       </div>
+
+
+      <div class="share-result-card">
+
+        <div class="share-card-brand">
+          <img src="kurage.png" alt="">
+          <span>思考の抜け道</span>
+        </div>
+
+        <div class="share-card-label">
+          理想・目標 到達度診断
+        </div>
+
+        <div class="share-card-target">
+          「${targetName}」
+        </div>
+
+        <div class="share-card-type-label">
+          YOUR CURRENT TYPE
+        </div>
+
+        <div class="share-card-type">
+          ${profile.type}
+        </div>
+
+        <div class="share-card-scores">
+
+          <div>
+            <span>推定到達度</span>
+            <strong>${round(structural)}%</strong>
+          </div>
+
+          <div class="share-card-score-line"></div>
+
+          <div>
+            <span>体感到達度</span>
+            <strong>${round(felt)}%</strong>
+          </div>
+
+        </div>
+
+        <div class="share-card-radar">
+          ${radarSvg}
+        </div>
+
+        <div class="share-card-tags">
+          ${profile.tags.map(tag =>
+            `<span>#${tag}</span>`
+          ).join("")}
+        </div>
+
+        <div class="share-card-footer">
+          - スクショシェア用カード -
+        </div>
+
+      </div>
+
 
       <button type="button" id="restartBtn">
         もう一度診断する
