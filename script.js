@@ -1610,6 +1610,104 @@ ${profile.type}
   <p class="save-card-message" id="saveCardMessage"></p>
 </div>
 
+saveCardBtn.addEventListener("click", async () => {
+  const card = document.querySelector(".share-result-card");
+
+  if (!card) return;
+
+  saveCardBtn.disabled = true;
+  saveCardBtn.textContent = "画像を作成中…";
+  saveCardMessage.textContent = "";
+
+  try {
+    const canvas = await html2canvas(card, {
+      scale: 2,
+      backgroundColor: "#ffffff",
+      useCORS: true,
+      logging: false
+    });
+
+    canvas.toBlob(async blob => {
+      if (!blob) {
+        throw new Error("画像生成に失敗しました");
+      }
+
+      const safeTarget =
+        rawTargetName
+          .replace(/[\\/:*?"<>|]/g, "_")
+          .slice(0, 30);
+
+      const fileName =
+        `理想目標到達度診断_${safeTarget}.png`;
+
+      const file = new File(
+        [blob],
+        fileName,
+        { type: "image/png" }
+      );
+
+      /*
+       * 共有可能な端末では共有シートを使用。
+       * iPhone / Androidではこちらの方が使いやすい。
+       */
+      if (
+        navigator.share &&
+        navigator.canShare &&
+        navigator.canShare({ files: [file] })
+      ) {
+        try {
+          await navigator.share({
+            files: [file],
+            title: "理想・目標 到達度診断",
+            text: "思考の抜け道｜理想・目標 到達度診断"
+          });
+
+          saveCardMessage.textContent =
+            "画像を作成しました";
+
+          return;
+        } catch (error) {
+          if (error.name === "AbortError") {
+            return;
+          }
+        }
+      }
+
+      /*
+       * 共有シート非対応の場合はPNGとしてダウンロード。
+       */
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = fileName;
+
+      document.body.appendChild(link);
+
+      link.click();
+      link.remove();
+
+      setTimeout(() => {
+        URL.revokeObjectURL(url);
+      }, 1000);
+
+      saveCardMessage.textContent =
+        "PNG画像を保存しました";
+    }, "image/png");
+
+  } catch (error) {
+    console.error(error);
+
+    saveCardMessage.textContent =
+      "画像を保存できませんでした";
+  } finally {
+    saveCardBtn.disabled = false;
+    saveCardBtn.textContent =
+      "このカードを画像で保存";
+  }
+});
+
       <button type="button" id="restartBtn">
         もう一度診断する
       </button>
