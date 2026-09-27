@@ -2,9 +2,14 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
-  padding: 32px 0;
+  padding: 28px 0;
   min-height: 100vh;
 
   font-family:
@@ -30,7 +35,7 @@ body {
 .container {
   width: min(90%, 680px);
 
-  padding: 42px 32px;
+  padding: 38px 32px;
 
   background: rgba(255, 255, 255, 0.92);
 
@@ -47,15 +52,27 @@ body {
    BASIC
 ========================= */
 
+h1,
+h2,
+p {
+  overflow-wrap: break-word;
+}
+
 h1 {
-  font-size: 2rem;
+  margin-top: 0;
   margin-bottom: 18px;
+
+  font-size: 2rem;
 }
 
 p {
-  line-height: 1.75;
+  margin-top: 0;
+  margin-bottom: 24px;
+
+  font-size: 1rem;
+  line-height: 1.72;
+
   color: #555;
-  margin-bottom: 28px;
 }
 
 button {
@@ -65,12 +82,14 @@ button {
   padding: 16px 34px;
 
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 700;
 
   background: #313c73;
   color: white;
 
   cursor: pointer;
+
+  font-family: inherit;
 }
 
 button:hover {
@@ -101,6 +120,7 @@ a:focus-visible {
   margin-bottom: 8px;
 
   font-size: 0.82rem;
+
   color: #777;
 }
 
@@ -137,7 +157,7 @@ a:focus-visible {
 
 .question-id {
   font-size: 0.78rem;
-  font-weight: bold;
+  font-weight: 700;
 
   letter-spacing: 0.08em;
 
@@ -147,7 +167,7 @@ a:focus-visible {
 .helper {
   margin-bottom: 24px;
 
-  font-size: 0.92rem;
+  font-size: 0.95rem;
 }
 
 .choice-list {
@@ -169,7 +189,8 @@ a:focus-visible {
 
   color: #30354b;
 
-  font-weight: normal;
+  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.5;
 
   text-align: left;
@@ -199,6 +220,7 @@ select {
 
   background: white;
 
+  font-family: inherit;
   font-size: 1rem;
 }
 
@@ -236,7 +258,7 @@ select {
 
   margin: 14px 0 0;
 
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 
   color: #b23a48;
 }
@@ -256,9 +278,9 @@ select {
 ========================= */
 
 .result-hero {
-  margin: 0 -32px 24px;
+  margin: 0 -32px 22px;
 
-  padding: 20px 22px 23px;
+  padding: 19px 22px 22px;
 
   background: #313c73;
 
@@ -270,32 +292,31 @@ select {
 .result-hero-label {
   margin-bottom: 7px;
 
-  font-size: 0.76rem;
+  font-size: 0.85rem;
   font-weight: 700;
 
-  letter-spacing: 0.16em;
+  letter-spacing: 0.15em;
 
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.68);
 }
 
 .result-hero h1 {
   margin: 0;
 
-  font-size: 1.62rem;
-  line-height: 1.4;
+  font-size: 1.72rem;
+  line-height: 1.35;
 
   color: white;
 }
 
 .result-hero-target {
-  margin: 9px 0 18px;
+  margin: 8px 0 17px;
 
-  font-size: 0.95rem;
-  line-height: 1.55;
-
+  font-size: 1.05rem;
   font-weight: 500;
+  line-height: 1.5;
 
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.86);
 }
 
 .result-score-grid {
@@ -315,13 +336,13 @@ select {
 
   margin-bottom: 4px;
 
-  font-size: 0.86rem;
+  font-size: 1rem;
   font-weight: 600;
 
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.82);
 }
 
-/* 数字サイズは現状維持 */
+/* パーセント表示は現在の大きさを維持 */
 .result-score-item strong {
   display: block;
 
@@ -337,7 +358,7 @@ select {
 
   margin: 0 18px;
 
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.28);
 }
 
 
@@ -346,9 +367,9 @@ select {
 ========================= */
 
 .perception-box {
-  margin: 22px 0 26px;
+  margin: 20px 0 23px;
 
-  padding: 20px 20px;
+  padding: 19px 19px;
 
   border-radius: 18px;
 
@@ -362,10 +383,10 @@ select {
 }
 
 .perception-box h2 {
-  margin: 0 0 10px;
+  margin: 0 0 9px;
 
-  font-size: 1.3rem;
-  line-height: 1.5;
+  font-size: 1.38rem;
+  line-height: 1.45;
 
   color: #30354b;
 }
@@ -373,10 +394,10 @@ select {
 .perception-box p {
   margin: 0;
 
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: 1.06rem;
+  line-height: 1.7;
 
-  color: #555;
+  color: #4f5363;
 }
 
 
@@ -385,9 +406,9 @@ select {
 ========================= */
 
 .type-box {
-  margin: 22px 0 26px;
+  margin: 20px 0 24px;
 
-  padding: 21px 20px;
+  padding: 20px 19px;
 
   background: #f5f6fb;
 
@@ -397,44 +418,44 @@ select {
 }
 
 .type-label {
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   font-weight: 700;
 
-  letter-spacing: 0.14em;
+  letter-spacing: 0.13em;
 
-  color: #9298ad;
+  color: #858ca4;
 }
 
 .type-heading span {
   display: block;
 
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 
-  font-size: 0.88rem;
+  font-size: 1rem;
 
-  color: #777;
+  color: #6f7484;
 }
 
 .type-heading h2 {
   margin: 0;
 
-  font-size: 1.72rem;
-  line-height: 1.4;
+  font-size: 1.82rem;
+  line-height: 1.35;
 
   color: #313c73;
 }
 
 .type-description {
-  max-width: 500px;
+  max-width: 520px;
 
-  margin: 13px auto 0;
+  margin: 12px auto 0;
 
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: 1.06rem;
+  line-height: 1.72;
 
-  color: #555;
+  color: #4f5363;
 
   text-align: left;
 }
@@ -446,10 +467,10 @@ select {
 
   gap: 8px;
 
-  margin-top: 15px;
+  margin-top: 14px;
 }
 
-/* ハッシュタグは小ささ維持 */
+/* ハッシュタグは小さいまま */
 .result-tag {
   padding: 7px 11px;
 
@@ -469,36 +490,36 @@ select {
 ========================= */
 
 .radar-heading {
-  margin: 28px 0 2px;
+  margin: 26px 0 1px;
 
   text-align: center;
 }
 
 .radar-heading h2 {
-  margin: 0 0 7px;
+  margin: 0 0 6px;
 
-  font-size: 1.28rem;
+  font-size: 1.38rem;
 
   color: #30354b;
 }
 
 .radar-heading p {
-  max-width: 500px;
+  max-width: 520px;
 
   margin: 0 auto;
 
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.65;
 
-  color: #777;
+  color: #666c7b;
 }
 
 .radar-wrap {
   width: 100%;
 
-  max-width: 440px;
+  max-width: 450px;
 
-  margin: 6px auto 24px;
+  margin: 4px auto 20px;
 }
 
 .radar-chart {
@@ -538,10 +559,10 @@ select {
 }
 
 .radar-label {
-  fill: #444;
+  fill: #3d4255;
 
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
 }
 
 
@@ -556,11 +577,11 @@ select {
 
   gap: 7px;
 
-  margin: 12px 0 24px;
+  margin: 10px 0 22px;
 }
 
 .result-values div {
-  padding: 11px 5px;
+  padding: 12px 5px;
 
   background: #f5f6fb;
 
@@ -570,9 +591,9 @@ select {
 .result-values span {
   display: block;
 
-  font-size: 0.76rem;
+  font-size: 0.9rem;
 
-  color: #777;
+  color: #666c7b;
 }
 
 .result-values strong {
@@ -580,7 +601,7 @@ select {
 
   margin-top: 4px;
 
-  font-size: 1.2rem;
+  font-size: 1.28rem;
 
   color: #313c73;
 }
@@ -591,15 +612,15 @@ select {
 ========================= */
 
 .analysis-section {
-  margin: 30px 0;
+  margin: 27px 0;
 
   text-align: left;
 }
 
 .analysis-section h2 {
-  margin: 0 0 14px;
+  margin: 0 0 12px;
 
-  font-size: 1.28rem;
+  font-size: 1.38rem;
 
   color: #30354b;
 }
@@ -607,7 +628,7 @@ select {
 .indicator-list {
   display: grid;
 
-  gap: 10px;
+  gap: 9px;
 }
 
 .indicator-item {
@@ -627,15 +648,15 @@ select {
 }
 
 .indicator-head strong {
-  font-size: 1rem;
+  font-size: 1.08rem;
 
   color: #30354b;
 }
 
 .indicator-head span {
-  min-width: 40px;
+  min-width: 42px;
 
-  padding: 5px 8px;
+  padding: 5px 9px;
 
   border-radius: 999px;
 
@@ -643,17 +664,20 @@ select {
 
   color: #313c73;
 
-  font-size: 0.88rem;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 700;
 
   text-align: center;
 }
 
+/* 診断結果の説明文：ここを本文サイズの下限に */
 .indicator-item p {
   margin: 7px 0 0;
 
-  font-size: 0.98rem;
+  font-size: 1.06rem;
   line-height: 1.7;
+
+  color: #4f5363;
 }
 
 
@@ -682,36 +706,38 @@ select {
 
   margin-bottom: 5px;
 
-  font-size: 0.8rem;
+  font-size: 1rem;
 
-  color: #777;
+  color: #666c7b;
 }
 
 .time-grid strong {
-  font-size: 1.02rem;
+  font-size: 1.08rem;
 
   color: #30354b;
 }
 
 .time-comment {
-  margin: 14px 0 0;
+  margin: 13px 0 0;
 
-  padding: 15px 17px;
+  padding: 14px 16px;
 
   border-left: 3px solid #313c73;
 
   background: #f8f8fc;
 
-  font-size: 0.98rem;
+  font-size: 1.06rem;
   line-height: 1.7;
+
+  color: #4f5363;
 }
 
 .time-gap {
-  margin: 10px 0 0;
+  margin: 9px 0 0;
 
-  font-size: 0.9rem;
+  font-size: 1rem;
 
-  color: #777;
+  color: #666c7b;
 }
 
 .time-gap strong {
@@ -726,9 +752,9 @@ select {
 ========================= */
 
 .share-section {
-  margin: 32px 0 18px;
+  margin: 28px 0 17px;
 
-  padding: 18px 18px;
+  padding: 17px;
 
   background: #f5f6fb;
 
@@ -738,12 +764,12 @@ select {
 }
 
 .share-title {
-  margin-bottom: 12px;
+  margin-bottom: 11px;
 
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
 
-  color: #656b82;
+  color: #5f6578;
 }
 
 .share-buttons {
@@ -762,7 +788,7 @@ select {
 
   border-radius: 12px;
 
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   font-weight: 700;
 }
 
@@ -791,10 +817,10 @@ select {
 
   margin: 8px 0 0;
 
-  font-size: 0.76rem;
+  font-size: 0.9rem;
   line-height: 1.4;
 
-  color: #777;
+  color: #6f7484;
 }
 
 
@@ -803,10 +829,10 @@ select {
 ========================= */
 
 .share-result-card {
-  max-width: 500px;
+  max-width: 520px;
 
-  margin: 18px auto 30px;
-  padding: 22px 22px 18px;
+  margin: 17px auto 28px;
+  padding: 21px 22px 17px;
 
   background: linear-gradient(
     160deg,
@@ -814,41 +840,41 @@ select {
     #f5f6fb 100%
   );
 
-  border: 1px solid #d8dce8;
+  border: 1px solid #d5d9e6;
   border-radius: 24px;
 
   box-shadow:
-    0 18px 45px rgba(49, 60, 115, 0.18),
-    0 4px 12px rgba(0, 0, 0, 0.06);
+    0 20px 48px rgba(49, 60, 115, 0.20),
+    0 5px 14px rgba(0, 0, 0, 0.07);
 
   text-align: center;
 }
 
 
-/* ブランド */
+/* カード上部ブランド */
 
 .share-card-brand {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  gap: 9px;
+  gap: 10px;
 
-  margin-bottom: 13px;
+  margin-bottom: 11px;
 }
 
 .share-card-brand img {
-  width: 38px;
-  height: 38px;
+  width: 50px;
+  height: 50px;
 
   object-fit: contain;
 }
 
 .share-card-brand span {
-  font-size: 0.88rem;
+  font-size: 1.08rem;
   font-weight: 700;
 
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 
   color: #313c73;
 }
@@ -857,21 +883,22 @@ select {
 /* 診断名・対象 */
 
 .share-card-label {
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 
-  font-size: 0.82rem;
-  font-weight: 600;
+  font-size: 1.08rem;
+  font-weight: 700;
 
-  color: #777;
+  color: #4f5363;
 }
 
 .share-card-target {
-  margin-bottom: 17px;
+  margin-bottom: 15px;
 
-  font-size: 0.92rem;
+  font-size: 1.05rem;
+  font-weight: 500;
   line-height: 1.5;
 
-  color: #666;
+  color: #666c7b;
 }
 
 
@@ -880,26 +907,26 @@ select {
 .share-card-type-label {
   margin-bottom: 3px;
 
-  font-size: 0.68rem;
+  font-size: 0.85rem;
   font-weight: 700;
 
-  letter-spacing: 0.15em;
+  letter-spacing: 0.14em;
 
-  color: #999fb2;
+  color: #858ca4;
 }
 
 .share-card-type {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 
-  font-size: 1.7rem;
+  font-size: 1.88rem;
   font-weight: 700;
-  line-height: 1.4;
+  line-height: 1.35;
 
   color: #313c73;
 }
 
 
-/* スコア */
+/* カード内スコア */
 
 .share-card-scores {
   display: grid;
@@ -908,9 +935,9 @@ select {
 
   align-items: center;
 
-  max-width: 340px;
+  max-width: 360px;
 
-  margin: 0 auto 8px;
+  margin: 0 auto 5px;
 }
 
 .share-card-scores > div:not(.share-card-score-line) span {
@@ -918,9 +945,10 @@ select {
 
   margin-bottom: 3px;
 
-  font-size: 0.78rem;
+  font-size: 1rem;
+  font-weight: 600;
 
-  color: #777;
+  color: #666c7b;
 }
 
 .share-card-scores strong {
@@ -934,32 +962,34 @@ select {
 
 .share-card-score-line {
   width: 1px;
-  height: 42px;
+  height: 44px;
 
   margin: 0 16px;
 
-  background: #d9deeb;
+  background: #d6dae6;
 }
 
 
-/* 共有カード内のレーダー */
+/* カード内レーダー */
 
 .share-card-radar {
   margin-top: 0;
 }
 
 .share-card-radar .radar-wrap {
-  max-width: 340px;
+  max-width: 390px;
 
-  margin: 0 auto 2px;
+  margin: 0 auto;
 }
 
+/* カード内の五角形ラベルを大きく */
 .share-card-radar .radar-label {
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: 700;
 }
 
 
-/* タグは小ささ維持 */
+/* カード内タグ：ここは小さく維持 */
 
 .share-card-tags {
   display: flex;
@@ -968,7 +998,7 @@ select {
 
   gap: 6px;
 
-  margin-top: 2px;
+  margin-top: 0;
 }
 
 .share-card-tags span {
@@ -978,41 +1008,42 @@ select {
 
   border-radius: 999px;
 
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 600;
 
   color: #313c73;
 }
 
 
-/* スクショカード表記 */
+/* スクショ用カード表示 */
 
 .share-card-footer {
-  margin-top: 15px;
-  padding-top: 12px;
+  margin-top: 14px;
+  padding-top: 11px;
 
-  border-top: 1px solid #e3e6ef;
+  border-top: 1px solid #dfe3ed;
 
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   font-weight: 700;
 
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 
-  color: #9298ad;
+  color: #858ca4;
 }
+
 
 /* =========================
    SAVE RESULT CARD
 ========================= */
 
 .save-card-wrap {
-  margin: -8px 0 28px;
+  margin: -5px 0 25px;
 
   text-align: center;
 }
 
 .save-card-button {
-  min-width: 250px;
+  min-width: 270px;
 
   padding: 14px 24px;
 
@@ -1022,7 +1053,7 @@ select {
 
   color: #313c73;
 
-  font-size: 0.92rem;
+  font-size: 1rem;
   font-weight: 700;
 
   box-shadow:
@@ -1046,20 +1077,11 @@ select {
 
   margin: 8px 0 0;
 
-  font-size: 0.76rem;
+  font-size: 0.9rem;
 
-  color: #777;
+  color: #666c7b;
 }
 
-@media (max-width: 600px) {
-
-  .save-card-button {
-    width: min(86%, 340px);
-
-    min-width: 0;
-  }
-
-}
 
 /* =========================
    RESTART
@@ -1068,7 +1090,7 @@ select {
 #restartBtn {
   display: block;
 
-  min-width: 290px;
+  min-width: 300px;
 
   margin: 0 auto;
 
@@ -1078,7 +1100,7 @@ select {
 
   color: white;
 
-  font-size: 1rem;
+  font-size: 1.05rem;
 
   box-shadow:
     0 8px 22px rgba(49, 60, 115, 0.14);
@@ -1090,14 +1112,14 @@ select {
 ========================= */
 
 .channel-link {
-  color: #737990;
+  color: #666d8b;
 
   font-weight: 700;
 
   text-decoration: none;
 
   border-bottom:
-    1px solid rgba(115, 121, 144, 0.35);
+    1px solid rgba(102, 109, 139, 0.38);
 }
 
 .channel-link:hover {
@@ -1106,17 +1128,20 @@ select {
   border-bottom-color: #313c73;
 }
 
+/* 最下部も本文下限に合わせる */
 .result-channel {
-  margin: 21px 0 0;
+  margin: 19px 0 0;
 
-  font-size: 0.8rem;
+  font-size: 1rem;
   line-height: 1.6;
 
-  color: #999;
+  color: #777d8e;
+
+  text-align: center;
 }
 
 .result-channel .channel-link {
-  font-size: 0.9rem;
+  font-size: 1.05rem;
 }
 
 
@@ -1135,99 +1160,98 @@ select {
   align-items: center;
   justify-content: center;
 
-  gap: 11px;
+  gap: 12px;
 
-  margin-bottom: 17px;
+  margin-bottom: 15px;
 }
 
 .start-kurage {
-  width: 54px;
-  height: 54px;
+  width: 62px;
+  height: 62px;
 
   object-fit: contain;
 }
 
 .brand-text {
-  font-size: 1rem;
+  font-size: 1.12rem;
   font-weight: 700;
 
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
 
   color: #313c73;
 }
 
 
-/* タイトル帯 */
+/* トップタイトル帯 */
 
 .start-hero {
-  margin: 0 -32px 20px;
+  margin: 0 -32px 18px;
 
-  padding: 18px 18px 20px;
+  padding: 17px 18px 19px;
 
   background: #313c73;
 }
 
 .start-label {
-  margin-bottom: 7px;
+  margin-bottom: 6px;
 
-  font-size: 0.76rem;
+  font-size: 0.9rem;
   font-weight: 700;
 
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
 
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .start-title {
   margin: 0;
 
-  font-size: 2.3rem;
-  line-height: 1.23;
+  font-size: 2.42rem;
+  line-height: 1.2;
 
   color: #fff;
 }
 
 
-/* 導入 */
+/* トップ導入 */
 
 .start-lead {
-  margin: 15px 0 7px;
+  margin: 13px 0 6px;
 
-  font-size: 1.1rem;
+  font-size: 1.18rem;
   font-weight: 700;
-
-  line-height: 1.65;
+  line-height: 1.6;
 
   color: #363b53;
 }
 
 .start-description {
-  max-width: 540px;
+  max-width: 560px;
 
-  margin: 0 auto 17px;
+  margin: 0 auto 15px;
 
-  font-size: 0.98rem;
-  line-height: 1.7;
+  font-size: 1.06rem;
+  line-height: 1.68;
 
-  color: #666;
+  color: #555b6d;
 }
 
 .start-caution {
-  margin: -6px 0 16px;
+  margin: -4px 0 14px;
 
-  font-size: 0.8rem;
+  font-size: 1rem;
   line-height: 1.5;
 
-  color: #929292;
+  color: #777d8e;
 }
 
 
 /* 推定到達度 × 体感到達度 */
 
 .start-concept {
-  margin: 17px 0 14px;
+  margin: 15px 0 13px;
 
-  padding: 16px 16px;
+  padding: 15px 15px;
 
   border-radius: 20px;
 
@@ -1243,18 +1267,18 @@ select {
 .start-concept > span {
   display: block;
 
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 
-  font-size: 0.8rem;
+  font-size: 1rem;
 
-  color: #777;
+  color: #666c7b;
 }
 
 .start-concept strong {
   display: block;
 
-  font-size: 1.38rem;
-  line-height: 1.45;
+  font-size: 1.5rem;
+  line-height: 1.4;
 
   color: #313c73;
 }
@@ -1268,12 +1292,12 @@ select {
 }
 
 .start-concept p {
-  margin: 7px 0 0;
+  margin: 6px 0 0;
 
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.58;
 
-  color: #666;
+  color: #555b6d;
 }
 
 
@@ -1286,7 +1310,7 @@ select {
 
   gap: 7px;
 
-  margin: 14px 0;
+  margin: 13px 0;
 }
 
 .start-meta span {
@@ -1296,41 +1320,41 @@ select {
 
   background: #f0f2f8;
 
-  font-size: 0.78rem;
+  font-size: 0.9rem;
 
-  color: #656b82;
+  color: #5f6578;
 }
 
 
 /* 開始ボタン */
 
 .start-button {
-  min-width: 230px;
+  min-width: 240px;
 
   margin-top: 0;
 
   padding: 17px 38px;
 
-  font-size: 1.08rem;
+  font-size: 1.12rem;
 
   box-shadow:
     0 8px 22px rgba(49, 60, 115, 0.18);
 }
 
 
-/* トップのチャンネル表記 */
+/* トップ下部 */
 
 .start-footer {
-  margin: 19px 0 0;
+  margin: 17px 0 0;
 
-  font-size: 0.8rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.58;
 
-  color: #999;
+  color: #777d8e;
 }
 
 .start-footer .channel-link {
-  font-size: 0.9rem;
+  font-size: 1.05rem;
 }
 
 
@@ -1341,13 +1365,13 @@ select {
 @media (max-width: 600px) {
 
   body {
-    padding: 18px 0;
+    padding: 16px 0;
   }
 
   .container {
     width: 94%;
 
-    padding: 24px 20px;
+    padding: 22px 20px;
 
     border-radius: 20px;
   }
@@ -1373,59 +1397,59 @@ select {
   ------------------------- */
 
   .start-brand {
-    margin-bottom: 15px;
+    margin-bottom: 14px;
   }
 
   .start-kurage {
-    width: 50px;
-    height: 50px;
+    width: 58px;
+    height: 58px;
   }
 
   .brand-text {
-    font-size: 0.96rem;
+    font-size: 1.08rem;
   }
 
   .start-hero {
     margin-left: -20px;
     margin-right: -20px;
 
-    padding: 17px 16px 19px;
+    padding: 16px 15px 18px;
   }
 
   .start-label {
-    font-size: 0.72rem;
+    font-size: 0.88rem;
   }
 
   .start-title {
-    font-size: 2rem;
+    font-size: 2.12rem;
   }
 
   .start-lead {
-    font-size: 1.06rem;
+    font-size: 1.13rem;
   }
 
   .start-description {
-    font-size: 0.94rem;
+    font-size: 1.03rem;
   }
 
   .start-caution {
-    font-size: 0.78rem;
+    font-size: 1rem;
   }
 
   .start-concept {
-    padding: 15px 14px;
+    padding: 14px 13px;
   }
 
   .start-concept > span {
-    font-size: 0.78rem;
+    font-size: 1rem;
   }
 
   .start-concept strong {
-    font-size: 1.3rem;
+    font-size: 1.42rem;
   }
 
   .start-concept p {
-    font-size: 0.87rem;
+    font-size: 1.02rem;
   }
 
   .start-meta {
@@ -1433,7 +1457,7 @@ select {
   }
 
   .start-meta span {
-    font-size: 0.74rem;
+    font-size: 0.88rem;
   }
 
 
@@ -1445,32 +1469,32 @@ select {
     margin-left: -20px;
     margin-right: -20px;
 
-    padding: 18px 16px 21px;
+    padding: 17px 15px 20px;
   }
 
   .result-hero-label {
-    font-size: 0.72rem;
+    font-size: 0.85rem;
   }
 
   .result-hero h1 {
-    font-size: 1.48rem;
+    font-size: 1.58rem;
   }
 
   .result-hero-target {
-    font-size: 0.9rem;
+    font-size: 1.02rem;
   }
 
   .result-score-item span {
-    font-size: 0.82rem;
+    font-size: 0.95rem;
   }
 
-  /* パーセントは現状維持 */
+  /* パーセントは現在のサイズを維持 */
   .result-score-item strong {
     font-size: 2.1rem;
   }
 
   .result-score-divider {
-    margin: 0 12px;
+    margin: 0 11px;
   }
 
 
@@ -1479,83 +1503,114 @@ select {
   ------------------------- */
 
   .perception-box {
-    padding: 18px 16px;
+    padding: 17px 15px;
   }
 
   .perception-box h2 {
-    font-size: 1.2rem;
+    font-size: 1.28rem;
   }
 
   .perception-box p {
-    font-size: 0.96rem;
+    font-size: 1.05rem;
   }
 
   .type-box {
-    padding: 19px 16px;
+    padding: 18px 15px;
+  }
+
+  .type-label {
+    font-size: 0.82rem;
   }
 
   .type-heading span {
-    font-size: 0.84rem;
+    font-size: 1rem;
   }
 
   .type-heading h2 {
-    font-size: 1.58rem;
+    font-size: 1.68rem;
   }
 
   .type-description {
-    font-size: 0.96rem;
+    font-size: 1.05rem;
   }
 
 
   /* -------------------------
-     レーダー
+     通常レーダー
   ------------------------- */
 
   .radar-heading h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   .radar-heading p {
-    font-size: 0.86rem;
+    font-size: 1rem;
+  }
+
+  .radar-wrap {
+    max-width: 390px;
   }
 
   .radar-label {
-    font-size: 12px;
+    font-size: 14px;
   }
 
 
   /* -------------------------
-     5指標
+     5指標の数値
+     スマホは横5列をやめる
   ------------------------- */
 
   .result-values {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
-    gap: 4px;
+    gap: 7px;
   }
 
   .result-values div {
-    padding: 10px 2px;
+    padding: 11px 8px;
+  }
+
+  .result-values div:last-child {
+    grid-column: 1 / -1;
   }
 
   .result-values span {
-    font-size: 0.68rem;
+    font-size: 1rem;
   }
 
   .result-values strong {
-    font-size: 1.12rem;
+    font-size: 1.28rem;
+  }
+
+
+  /* -------------------------
+     各項目の説明
+  ------------------------- */
+
+  .analysis-section {
+    margin: 25px 0;
   }
 
   .analysis-section h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+  }
+
+  .indicator-item {
+    padding: 14px 15px;
   }
 
   .indicator-head strong {
-    font-size: 0.98rem;
+    font-size: 1.06rem;
+  }
+
+  .indicator-head span {
+    font-size: 1rem;
   }
 
   .indicator-item p {
-    font-size: 0.94rem;
+    font-size: 1.05rem;
+    line-height: 1.68;
   }
 
 
@@ -1572,15 +1627,19 @@ select {
   }
 
   .time-grid span {
-    font-size: 0.76rem;
+    font-size: 1rem;
   }
 
   .time-grid strong {
-    font-size: 0.96rem;
+    font-size: 1.05rem;
   }
 
   .time-comment {
-    font-size: 0.94rem;
+    font-size: 1.05rem;
+  }
+
+  .time-gap {
+    font-size: 1rem;
   }
 
 
@@ -1589,7 +1648,11 @@ select {
   ------------------------- */
 
   .share-section {
-    padding: 17px 12px;
+    padding: 16px 11px;
+  }
+
+  .share-title {
+    font-size: 1rem;
   }
 
   .share-buttons {
@@ -1599,11 +1662,11 @@ select {
   }
 
   .share-buttons button {
-    min-height: 44px;
+    min-height: 46px;
 
     padding: 9px 5px;
 
-    font-size: 0.76rem;
+    font-size: 0.84rem;
   }
 
 
@@ -1612,32 +1675,54 @@ select {
   ------------------------- */
 
   .share-result-card {
-    margin: 18px 0 30px;
+    margin: 17px 0 27px;
 
-    padding: 20px 14px 17px;
+    padding: 19px 13px 16px;
 
     border-radius: 20px;
   }
 
+  .share-card-brand {
+    gap: 9px;
+
+    margin-bottom: 10px;
+  }
+
   .share-card-brand img {
-    width: 36px;
-    height: 36px;
+    width: 46px;
+    height: 46px;
   }
 
   .share-card-brand span {
-    font-size: 0.84rem;
+    font-size: 1.05rem;
   }
 
   .share-card-label {
-    font-size: 0.78rem;
+    font-size: 1.05rem;
   }
 
   .share-card-target {
-    font-size: 0.88rem;
+    font-size: 1rem;
+
+    margin-bottom: 14px;
+  }
+
+  .share-card-type-label {
+    font-size: 0.82rem;
   }
 
   .share-card-type {
-    font-size: 1.55rem;
+    font-size: 1.68rem;
+
+    margin-bottom: 15px;
+  }
+
+  .share-card-scores {
+    max-width: 330px;
+  }
+
+  .share-card-scores > div:not(.share-card-score-line) span {
+    font-size: 0.95rem;
   }
 
   .share-card-scores strong {
@@ -1645,26 +1730,53 @@ select {
   }
 
   .share-card-score-line {
-    margin: 0 12px;
+    margin: 0 11px;
   }
 
   .share-card-radar .radar-wrap {
-    max-width: 310px;
+    max-width: 345px;
   }
 
   .share-card-radar .radar-label {
-    font-size: 11px;
+    font-size: 14px;
+  }
+
+  .share-card-footer {
+    font-size: 0.82rem;
   }
 
 
   /* -------------------------
-     再診断
+     保存・再診断
   ------------------------- */
 
-  #restartBtn {
-    width: min(86%, 340px);
+  .save-card-button {
+    width: min(88%, 360px);
 
     min-width: 0;
+
+    font-size: 1rem;
+  }
+
+  #restartBtn {
+    width: min(88%, 360px);
+
+    min-width: 0;
+
+    font-size: 1.05rem;
+  }
+
+
+  /* -------------------------
+     下部チャンネル
+  ------------------------- */
+
+  .result-channel {
+    font-size: 1rem;
+  }
+
+  .result-channel .channel-link {
+    font-size: 1.05rem;
   }
 
 }
@@ -1679,30 +1791,34 @@ select {
   .container {
     width: 96%;
 
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .start-hero,
   .result-hero {
-    margin-left: -16px;
-    margin-right: -16px;
+    margin-left: -15px;
+    margin-right: -15px;
   }
 
   .start-title {
-    font-size: 1.9rem;
+    font-size: 2rem;
   }
 
-  .result-values span {
-    font-size: 0.62rem;
-  }
-
-  .result-values strong {
-    font-size: 1.05rem;
+  .result-score-item span {
+    font-size: 0.9rem;
   }
 
   .share-buttons button {
-    font-size: 0.7rem;
+    font-size: 0.78rem;
+  }
+
+  .share-card-radar .radar-wrap {
+    max-width: 320px;
+  }
+
+  .share-card-radar .radar-label {
+    font-size: 13px;
   }
 
 }
