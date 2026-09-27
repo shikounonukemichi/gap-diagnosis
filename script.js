@@ -1613,7 +1613,7 @@ ${radarSvg}
       </div>
 
       <div class="share-card-footer">
-        - スクショシェア用カード -
+        - 診断結果シェア用カード -
       </div>
 
     </div>
