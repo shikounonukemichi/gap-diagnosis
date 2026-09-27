@@ -1598,6 +1598,17 @@ ${profile.type}
 
       </div>
 
+<div class="save-card-wrap">
+  <button
+    type="button"
+    id="saveCardBtn"
+    class="save-card-button"
+  >
+    このカードを画像で保存
+  </button>
+
+  <p class="save-card-message" id="saveCardMessage"></p>
+</div>
 
       <button type="button" id="restartBtn">
         もう一度診断する
