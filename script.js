@@ -1593,7 +1593,7 @@ ${profile.type}
         </div>
 
         <div class="share-card-footer">
-          - スクショシェア用カード -
+          - 結果シェア用カード -
         </div>
 
       </div>
