@@ -1,6 +1,6 @@
 {
   "name": "理想・目標 到達度診断",
-  "short_name": "到達度診断",
+  "short_name": "理想到達度診断",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
