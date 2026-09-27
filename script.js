@@ -116,16 +116,16 @@ const questions = [
   },
   {
     id: "E2",
-    type: "choice",
-    title: "この目標を持った当初、今ごろは、目標達成に必要な準備や条件がどの程度整っていると思っていましたか？",
-    options: [
-      ["まだほとんど整っていない想定だった", 0],
-      ["一部は整っている想定だった", 25],
-      ["半分程度は整っている想定だった", 50],
-      ["かなり整っている想定だった", 75],
-      ["ほぼ整っている想定だった", 100],
-      ["当時はそこまで考えていなかった", null]
-    ]
+  type: "choice",
+  title: "この目標を持った当初、今ごろは、目標達成に必要な準備や条件がどの程度整っていると思っていましたか？",
+  options: [
+    ["まだほとんど整っていない想定だった", 0],
+    ["一部は整っている想定だった", 25],
+    ["半分程度は整っている想定だった", 50],
+    ["かなり整っている想定だった", 75],
+    ["ほぼ整っている想定だった", 100],
+    ["当時はそこまで考えていなかった", null]
+  ]
   },
   {
     id: "E3",
@@ -154,17 +154,17 @@ const questions = [
     ]
   },
   {
-    id: "M2",
-    type: "choice",
-    title: "目標自体は実現していても、最終的にたどり着いた形が、当初思い描いていたものと違っていた場合、どこまで受け入れられますか？",
-    options: [
-      ["大きく違っていても、目的が満たされれば受け入れられる", 0],
-      ["かなり違っていても、重要な部分が残っていれば受け入れられる", 25],
-      ["ある程度は思い描いた形に近くあってほしい", 50],
-      ["かなり思い描いた形に近くないと受け入れにくい", 75],
-      ["思い描いた形そのものであることが重要", 100]
-    ]
-  },
+  id: "M2",
+  type: "choice",
+  title: "目標自体は実現していても、最終的にたどり着いた形が、当初思い描いていたものと違っていた場合、どこまで受け入れられますか？",
+  options: [
+    ["大きく違っていても、目的が満たされれば受け入れられる", 0],
+    ["かなり違っていても、重要な部分が残っていれば受け入れられる", 25],
+    ["ある程度は思い描いた形に近くあってほしい", 50],
+    ["かなり思い描いた形に近くないと受け入れにくい", 75],
+    ["思い描いた形そのものであることが重要", 100]
+  ]
+},
   {
     id: "M3",
     type: "choice",
@@ -385,6 +385,8 @@ function createRadarChart(items) {
   const radius = 105;
   const levels = [20, 40, 60, 80, 100];
 
+ 
+
   const point = (index, value, extra = 0) => {
     const angle = -Math.PI / 2 + (Math.PI * 2 * index) / 5;
     const r = radius * (value / 100) + extra;
@@ -493,7 +495,7 @@ function createRadarChart(items) {
   `;
 }
 
-function getResultProfile({
+ function getResultProfile({
   structural,
   felt,
   gap,
@@ -512,14 +514,15 @@ function getResultProfile({
   let description =
     "現在地と体感の差が比較的小さく、目標との関係に大きな偏りは見られません。";
 
+  // 主タイプ判定
   if (perceptionGap <= -10) {
     type = "進んでいるのに遠い型";
     description =
-      "実際の進捗以上に、まだ遠いと感じやすい状態です。期待とのズレや達成条件の厳しさ、逆風などが体感を押し下げています。";
+      "回答から推定される進み具合以上に、まだ遠いと感じやすい状態です。期待とのズレや達成条件の厳しさ、逆風などが体感を押し下げています。";
   } else if (perceptionGap >= 8) {
     type = "まだ途中でも手応え型";
     description =
-      "実際の現在地以上に、前進している手応えを感じやすい状態です。進み方への納得感や追い風が、体感を押し上げています。";
+      "回答から推定される現在地以上に、前進している手応えを感じやすい状態です。進み方への納得感や追い風が、体感を押し上げています。";
   } else if (P >= 70 && wind <= 30) {
     type = "逆風航行型";
     description =
@@ -546,13 +549,13 @@ function getResultProfile({
       "現在地そのものより、今の行動や進行が止まり気味であることが大きく表れています。";
   }
 
+  // 補助タグ
   const tags = [];
 
   if (typeof gap === "number") {
-    if (gap >= 60) tags.push("想定より遅れ");
-    if (gap <= 15) tags.push("ほぼ想定内");
-  }
-
+  if (gap >= 60) tags.push("想定より遅れ");
+  if (gap <= 15) tags.push("ほぼ想定内");
+}
   if (flex <= 25) tags.push("完成形重視");
   if (flex >= 75) tags.push("柔軟");
 
@@ -682,6 +685,7 @@ function getIndicatorComments({
   ];
 }
 
+
 function formatDuration(answer, prefix = "") {
   if (answer === "not_started") {
     return "まだ具体的には始めていない";
@@ -737,7 +741,7 @@ function getPerceptionInsight({
   if (diff <= -12) {
     headline = "進んではいる。でも、あなたの中ではまだ遠い。";
   } else if (diff <= -4) {
-    headline = "実際の現在地より、体感は少し厳しめです。";
+    headline = "推定された現在地より、体感は少し厳しめです。";
   } else if (diff < 4) {
     headline = "現在地と、あなたの実感はほぼ一致しています。";
   } else if (diff < 12) {
@@ -749,6 +753,7 @@ function getPerceptionInsight({
   const downReasons = [];
   const upReasons = [];
 
+  // 当初想定との差
   if (typeof signedGap === "number") {
     if (signedGap >= 0.25) {
       downReasons.push("当初思い描いていたペースとのズレ");
@@ -757,6 +762,7 @@ function getPerceptionInsight({
     }
   }
 
+  // 達成条件
   if (typeof M === "number") {
     if (M >= 65) {
       downReasons.push("「ここまで来なければ達成ではない」という基準の高さ");
@@ -765,6 +771,7 @@ function getPerceptionInsight({
     }
   }
 
+  // 外部要因
   if (
     typeof L1 === "number" &&
     typeof L2 === "number" &&
@@ -790,7 +797,7 @@ function getPerceptionInsight({
         "現在地そのものよりも「まだ足りない」という感覚を強くしています。";
     } else {
       body =
-        "回答上では、実際の進捗に比べて、自分自身の評価の方がやや厳しくなっています。";
+        "回答から推定される進み具合に比べて、自分自身の評価の方がやや厳しくなっています。";
     }
   } else if (diff >= 4) {
     if (upReasons.length) {
@@ -835,15 +842,15 @@ function renderStartScreen() {
       </div>
 
       <div class="start-hero">
-        <div class="start-label">
-          VISUALIZE YOUR GAP
-        </div>
+  <div class="start-label">
+    VISUALIZE YOUR GAP
+  </div>
 
-        <h1 class="start-title">
-          理想・目標<br>
-          到達度診断
-        </h1>
-      </div>
+  <h1 class="start-title">
+    理想・目標<br>
+    到達度診断
+  </h1>
+</div>
 
       <p class="start-lead">
         その目標、本当はどこまで進んでいるのでしょうか。
@@ -888,16 +895,16 @@ function renderStartScreen() {
       </button>
 
       <p class="start-footer">
-        意識を解き明かすYouTubeチャンネル<br>
-        <a
-          href="https://www.youtube.com/@思考の抜け道"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="channel-link"
-        >
-          思考の抜け道
-        </a>
-      </p>
+  意識を解き明かすYouTubeチャンネル<br>
+  <a
+    href="https://www.youtube.com/@思考の抜け道"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="channel-link"
+  >
+    思考の抜け道
+  </a>
+</p>
 
     </section>
   `;
@@ -1121,6 +1128,10 @@ function isAnswered(q) {
 function showPreliminaryResult() {
   const a = state.answers;
 
+  // --------------------
+  // 基本指標
+  // --------------------
+
   const C = average([a.C1, a.C2, a.C3, a.C4, a.C5]);
   const E = average([a.E1, a.E2, a.E3]);
   const M = average([a.M1, a.M2, a.M3, a.M4]);
@@ -1132,10 +1143,15 @@ function showPreliminaryResult() {
       ? null
       : 100 - M;
 
+  // 理想の広がりによる補正は最大20%
   const structural =
     C === null || I === null
       ? null
       : C * (1 - 0.2 * (I / 100));
+
+  // --------------------
+  // 時間計算
+  // --------------------
 
   const elapsed = durationToDays(a.T1);
   const originalPlan = durationToDays(a.T3);
@@ -1160,6 +1176,12 @@ function showPreliminaryResult() {
       (forecastTotal - originalPlan) / originalPlan;
   }
 
+  // --------------------
+  // 想定との差
+  // 正：想定より遅い
+  // 負：想定より早い
+  // --------------------
+
   let expectationSigned = null;
 
   if (C !== null && E !== null) {
@@ -1177,6 +1199,13 @@ function showPreliminaryResult() {
   let paceSigned = null;
 
   if (typeof a.P4 === "number") {
+    // P4:
+    // -2 = かなり遅い
+    // -1 = 少し遅い
+    //  0 = 想定通り
+    // +1 = 少し早い
+    // +2 = かなり早い
+
     paceSigned = -(a.P4 / 2);
   }
 
@@ -1186,10 +1215,17 @@ function showPreliminaryResult() {
     { value: paceSigned, weight: 0.2 }
   ]);
 
+  // レーダー表示用
+  // 想定以上・想定通りなら0
+  // 遅れるほど100へ
   const gap =
     signedGap === null
       ? null
       : clamp(signedGap * 100, 0, 100);
+
+  // --------------------
+  // 追い風度
+  // --------------------
 
   const wind =
     typeof a.L1 === "number" &&
@@ -1201,16 +1237,26 @@ function showPreliminaryResult() {
         )
       : null;
 
+  // --------------------
+  // 体感到達度
+  // --------------------
+
+  // 1. 想定とのズレ
+  // 最大 ±15%
   const expectationFactor =
     signedGap === null
       ? 1
       : 1 - 0.15 * signedGap;
 
+  // 2. 達成要求
+  // 柔軟なら最大 +10%
+  // 厳しければ最大 -10%
   const requirementFactor =
     M === null
       ? 1
       : 1 + 0.10 * ((50 - M) / 50);
 
+  // 3. 運・外部要因
   let luckFactor = 1;
 
   if (
@@ -1221,6 +1267,8 @@ function showPreliminaryResult() {
     const balance =
       (a.L2 - a.L1) / 100;
 
+    // 運が重要だと思うほど
+    // 追い風・逆風が心理に強く効く
     const impact =
       0.10 + 0.10 * (a.L3 / 100);
 
@@ -1240,80 +1288,88 @@ function showPreliminaryResult() {
           100
         );
 
-  const radarSvg = createRadarChart([
-    { label: "到達度", value: structural },
-    { label: "想定との差", value: gap },
-    { label: "妥協度", value: flex },
-    { label: "推進力", value: P },
-    { label: "追い風度", value: wind }
-  ]);
+  const perceptionGap =
+    structural !== null && felt !== null
+      ? felt - structural
+      : null;
+
+  // --------------------
+  // 表示用
+  // --------------------
+
+const radarSvg = createRadarChart([
+  { label: "到達度", value: structural },
+  { label: "想定との差", value: gap },
+  { label: "妥協度", value: flex },
+  { label: "推進力", value: P },
+  { label: "追い風度", value: wind }
+]);
 
   const profile = getResultProfile({
-    structural,
-    felt,
-    gap,
-    flex,
-    P,
-    wind,
-    I,
-    timeDeviationRate
-  });
+  structural,
+  felt,
+  gap,
+  flex,
+  P,
+  wind,
+  I,
+  timeDeviationRate
+});
 
-  const rawTargetName =
-    typeof a.Q0 === "string" && a.Q0.trim()
-      ? a.Q0.trim()
-      : "今回の目標";
+const rawTargetName =
+  typeof a.Q0 === "string" && a.Q0.trim()
+    ? a.Q0.trim()
+    : "今回の目標";
 
-  const targetName = escapeHtml(rawTargetName);
-
+const targetName = escapeHtml(rawTargetName);
   const indicatorComments = getIndicatorComments({
-    structural,
-    signedGap,
-    flex,
-    P,
-    wind
-  });
+  structural,
+  signedGap,
+  flex,
+  P,
+  wind
+});
 
-  const perceptionInsight = getPerceptionInsight({
-    structural,
-    felt,
-    signedGap,
-    M,
-    L1: a.L1,
-    L2: a.L2,
-    L3: a.L3
-  });
+const perceptionInsight = getPerceptionInsight({
+  structural,
+  felt,
+  signedGap,
+  M,
+  L1: a.L1,
+  L2: a.L2,
+  L3: a.L3
+});
+  
+let timeComment = "";
 
-  let timeComment = "";
-
-  if (timeDeviationRate === null) {
-    if (a.T3 === "unset") {
-      timeComment =
-        "当初から期限を決めていなかったため、予定との時間差は算出していません。";
-    } else if (a.T4 === "unknown") {
-      timeComment =
-        "現在の到達時期が見通せないため、当初の予定との時間差は算出できません。";
-    } else if (a.T4 === "already_reached") {
-      timeComment =
-        "すでに到達しています。到達した時期を尋ねていないため、実際にかかった期間との比較は行っていません。";
-    } else {
-      timeComment =
-        "時間については、比較に必要な情報が十分にありません。";
-    }
-  } else if (timeDeviationRate >= 0.5) {
+if (timeDeviationRate === null) {
+  if (a.T3 === "unset") {
     timeComment =
-      "現在の見込みでは、到達までの期間は当初の想定よりかなり長くなっています。";
-  } else if (timeDeviationRate >= 0.15) {
+      "当初から期限を決めていなかったため、予定との時間差は算出していません。";
+  } else if (a.T4 === "unknown") {
     timeComment =
-      "現在の見込みでは、到達までの期間は当初の想定よりやや長くなっています。";
-  } else if (timeDeviationRate <= -0.2) {
+      "現在の到達時期が見通せないため、当初の予定との時間差は算出できません。";
+  } else if (a.T4 === "already_reached") {
     timeComment =
-      "現在の見込みでは、当初の想定より早く到達するペースです。";
+      "すでに到達しています。到達した時期を尋ねていないため、実際にかかった期間との比較は行っていません。";
   } else {
     timeComment =
-      "到達までの時間は、おおむね当初想定していた範囲に収まっています。";
+      "時間については、比較に必要な情報が十分にありません。";
   }
-
+} else if (timeDeviationRate >= 0.5) {
+  timeComment =
+    "現在の見込みでは、到達までの期間は当初の想定よりかなり長くなっています。";
+} else if (timeDeviationRate >= 0.15) {
+  timeComment =
+    "現在の見込みでは、到達までの期間は当初の想定よりやや長くなっています。";
+} else if (timeDeviationRate <= -0.2) {
+  timeComment =
+    "現在の見込みでは、当初の想定より早く到達するペースです。";
+} else {
+  timeComment =
+    "到達までの時間は、おおむね当初想定していた範囲に収まっています。";
+}
+  
   const round = value =>
     value === null
       ? "―"
@@ -1345,394 +1401,301 @@ ${profile.type}
 #思考の抜け道`;
 
   app.innerHTML = `
-    <section class="question-card result-screen">
+  <section class="question-card result-screen">
 
-      <div class="result-hero">
+   <div class="result-hero">
 
-        <div class="result-hero-label">
-          DIAGNOSIS RESULT
-        </div>
+  <div class="result-hero-label">
+    DIAGNOSIS RESULT
+  </div>
 
-        <h1>
-          理想・目標 到達度診断
-        </h1>
+  <h1>
+    理想・目標 到達度診断
+  </h1>
 
-        <p class="result-hero-target">
-          「${targetName}」
-        </p>
+  <p class="result-hero-target">
+    「${targetName}」
+  </p>
 
-        <div class="result-score-grid">
+  <div class="result-score-grid">
 
-          <div class="result-score-item">
-            <span>推定到達度</span>
-            <strong>${round(structural)}%</strong>
-          </div>
+    <div class="result-score-item">
+      <span>推定到達度</span>
+      <strong>${round(structural)}%</strong>
+    </div>
 
-          <div class="result-score-divider"></div>
+    <div class="result-score-divider"></div>
 
-          <div class="result-score-item">
-            <span>体感到達度</span>
-            <strong>${round(felt)}%</strong>
-          </div>
+    <div class="result-score-item">
+      <span>体感到達度</span>
+      <strong>${round(felt)}%</strong>
+    </div>
 
-        </div>
+  </div>
 
-      </div>
-
-      <div class="perception-box">
-        <h2>${perceptionInsight.headline}</h2>
-        <p>${perceptionInsight.body}</p>
-      </div>
-
-      <div class="type-box">
-
-        <div class="type-label">
-          YOUR CURRENT TYPE
-        </div>
-
-        <div class="type-heading">
-          <span>あなたの現在地タイプ</span>
-          <h2>${profile.type}</h2>
-        </div>
-
-        <p class="type-description">
-          ${profile.description}
-        </p>
-
-        <div class="tag-list">
-          ${profile.tags.map(tag =>
-            `<span class="result-tag">#${tag}</span>`
-          ).join("")}
-        </div>
-
-      </div>
-
-      <div class="radar-heading">
-        <h2>目標との関係を5つの軸で見る</h2>
-        <p>
-          このグラフは「高いほど良い」という評価ではなく、
-          今のあなたと目標との関係の形を表しています。
-        </p>
-      </div>
-
-      ${radarSvg}
-
-      <div class="result-values">
-        <div>
-          <span>到達度</span>
-          <strong>${round(structural)}</strong>
-        </div>
-
-        <div>
-          <span>想定との差</span>
-          <strong>${round(gap)}</strong>
-        </div>
-
-        <div>
-          <span>妥協度</span>
-          <strong>${round(flex)}</strong>
-        </div>
-
-        <div>
-          <span>推進力</span>
-          <strong>${round(P)}</strong>
-        </div>
-
-        <div>
-          <span>追い風度</span>
-          <strong>${round(wind)}</strong>
-        </div>
-      </div>
-
-      <div class="analysis-section">
-        <h2>5つの指標から見る現在地</h2>
-
-        <div class="indicator-list">
-          ${indicatorComments.map(item => `
-            <div class="indicator-item">
-              <div class="indicator-head">
-                <strong>${item.label}</strong>
-                <span>
-                  ${item.value === null ? "―" : Math.round(item.value)}
-                </span>
-              </div>
-
-              <p>${item.text}</p>
-            </div>
-          `).join("")}
-        </div>
-      </div>
-
-      <div class="analysis-section time-section">
-        <h2>時間軸</h2>
-
-        <div class="time-grid">
-          <div>
-            <span>目標を持ってから</span>
-            <strong>${formatDuration(a.T1)}</strong>
-          </div>
-
-          <div>
-            <span>行動を始めてから</span>
-            <strong>${formatDuration(a.T2)}</strong>
-          </div>
-
-          <div>
-            <span>当初の到達予定</span>
-            <strong>${formatDuration(a.T3)}</strong>
-          </div>
-
-          <div>
-            <span>現在の残り見込み</span>
-            <strong>${formatDuration(a.T4, "あと")}</strong>
-          </div>
-        </div>
-
-        <p class="time-comment">
-          ${timeComment}
-        </p>
-
-        ${
-          timeDeviationRate !== null
-            ? `
-              <p class="time-gap">
-                当初想定との時間差
-                <strong>${percentSigned(timeDeviationRate)}</strong>
-              </p>
-            `
-            : ""
-        }
-      </div>
-
-           <div class="share-section">
-
-        <div class="share-title">
-          この結果を共有
-        </div>
-
-        <div class="share-buttons">
-
-          <button
-            type="button"
-            id="shareBtn"
-            class="share-main"
-          >
-            結果を共有
-          </button>
-
-          <button
-            type="button"
-            id="xShareBtn"
-            class="share-sub"
-          >
-            Xで共有
-          </button>
-
-          <button
-            type="button"
-            id="copyBtn"
-            class="share-sub"
-          >
-            リンクをコピー
-          </button>
-
-        </div>
-
-        <p class="share-message" id="shareMessage"></p>
-
-      </div>
-
-
-      <div class="share-result-card">
-
-        <div class="share-card-brand">
-          <img src="kurage.png" alt="">
-          <span>思考の抜け道</span>
-        </div>
-
-        <div class="share-card-label">
-          理想・目標 到達度診断
-        </div>
-
-        <div class="share-card-target">
-          「${targetName}」
-        </div>
-
-        <div class="share-card-type-label">
-          YOUR CURRENT TYPE
-        </div>
-
-        <div class="share-card-type">
-          ${profile.type}
-        </div>
-
-        <div class="share-card-scores">
-
-          <div>
-            <span>推定到達度</span>
-            <strong>${round(structural)}%</strong>
-          </div>
-
-          <div class="share-card-score-line"></div>
-
-          <div>
-            <span>体感到達度</span>
-            <strong>${round(felt)}%</strong>
-          </div>
-
-        </div>
-
-        <div class="share-card-radar">
-          ${radarSvg}
-        </div>
-
-        <div class="share-card-tags">
-          ${profile.tags.map(tag =>
-            `<span>#${tag}</span>`
-          ).join("")}
-        </div>
-
-        <div class="share-card-footer">
-          - 結果シェア用カード -
-        </div>
-
-      </div>
-
-<div class="save-card-wrap">
-  <button
-    type="button"
-    id="saveCardBtn"
-    class="save-card-button"
-  >
-    このカードを画像で保存
-  </button>
-
-  <p class="save-card-message" id="saveCardMessage"></p>
 </div>
 
-saveCardBtn.addEventListener("click", async () => {
-  const card = document.querySelector(".share-result-card");
+<div class="perception-box">
+  <h2>${perceptionInsight.headline}</h2>
 
-  if (!card) return;
+  <p>${perceptionInsight.body}</p>
 
-  saveCardBtn.disabled = true;
-  saveCardBtn.textContent = "画像を作成中…";
-  saveCardMessage.textContent = "";
+  
+</div>
 
-  try {
-    const canvas = await html2canvas(card, {
-      scale: 2,
-      backgroundColor: "#ffffff",
-      useCORS: true,
-      logging: false
-    });
+    <div class="type-box">
 
-    canvas.toBlob(async blob => {
-      if (!blob) {
-        throw new Error("画像生成に失敗しました");
-      }
+  <div class="type-label">
+    YOUR CURRENT TYPE
+  </div>
 
-      const safeTarget =
-        rawTargetName
-          .replace(/[\\/:*?"<>|]/g, "_")
-          .slice(0, 30);
+  <div class="type-heading">
+    <span>あなたの現在地タイプ</span>
+    <h2>${profile.type}</h2>
+  </div>
 
-      const fileName =
-        `理想目標到達度診断_${safeTarget}.png`;
+  <p class="type-description">
+    ${profile.description}
+  </p>
 
-      const file = new File(
-        [blob],
-        fileName,
-        { type: "image/png" }
-      );
+  <div class="tag-list">
+    ${profile.tags.map(tag =>
+      `<span class="result-tag">#${tag}</span>`
+    ).join("")}
+  </div>
 
-      /*
-       * 共有可能な端末では共有シートを使用。
-       * iPhone / Androidではこちらの方が使いやすい。
-       */
-      if (
-        navigator.share &&
-        navigator.canShare &&
-        navigator.canShare({ files: [file] })
-      ) {
-        try {
-          await navigator.share({
-            files: [file],
-            title: "理想・目標 到達度診断",
-            text: "思考の抜け道｜理想・目標 到達度診断"
-          });
+</div>
 
-          saveCardMessage.textContent =
-            "画像を作成しました";
+    <div class="radar-heading">
+  <h2>目標との関係を5つの軸で見る</h2>
+  <p>
+    このグラフは「高いほど良い」という評価ではなく、
+    今のあなたと目標との関係の形を表しています。
+  </p>
+</div>
 
-          return;
-        } catch (error) {
-          if (error.name === "AbortError") {
-            return;
-          }
-        }
-      }
+${radarSvg}
 
-      /*
-       * 共有シート非対応の場合はPNGとしてダウンロード。
-       */
-      const url = URL.createObjectURL(blob);
+<div class="result-values">
+      <div>
+        <span>到達度</span>
+        <strong>${round(structural)}</strong>
+      </div>
 
-      const link = document.createElement("a");
+      <div>
+        <span>想定との差</span>
+        <strong>${round(gap)}</strong>
+      </div>
 
-      link.href = url;
-      link.download = fileName;
+      <div>
+        <span>妥協度</span>
+        <strong>${round(flex)}</strong>
+      </div>
 
-      document.body.appendChild(link);
+      <div>
+        <span>推進力</span>
+        <strong>${round(P)}</strong>
+      </div>
 
-      link.click();
-      link.remove();
+      <div>
+        <span>追い風度</span>
+        <strong>${round(wind)}</strong>
+      </div>
+    </div>
 
-      setTimeout(() => {
-        URL.revokeObjectURL(url);
-      }, 1000);
+<div class="analysis-section">
+  <h2>5つの指標から見る現在地</h2>
 
-      saveCardMessage.textContent =
-        "PNG画像を保存しました";
-    }, "image/png");
+  <div class="indicator-list">
+    ${indicatorComments.map(item => `
+      <div class="indicator-item">
+        <div class="indicator-head">
+          <strong>${item.label}</strong>
+          <span>
+            ${item.value === null ? "―" : Math.round(item.value)}
+          </span>
+        </div>
 
-  } catch (error) {
-    console.error(error);
+        <p>${item.text}</p>
+      </div>
+    `).join("")}
+  </div>
+</div>
 
-    saveCardMessage.textContent =
-      "画像を保存できませんでした";
-  } finally {
-    saveCardBtn.disabled = false;
-    saveCardBtn.textContent =
-      "このカードを画像で保存";
+<div class="analysis-section time-section">
+  <h2>時間軸</h2>
+
+  <div class="time-grid">
+    <div>
+      <span>目標を持ってから</span>
+      <strong>${formatDuration(a.T1)}</strong>
+    </div>
+
+    <div>
+      <span>行動を始めてから</span>
+      <strong>${formatDuration(a.T2)}</strong>
+    </div>
+
+    <div>
+      <span>当初の到達予定</span>
+      <strong>${formatDuration(a.T3)}</strong>
+    </div>
+
+    <div>
+      <span>現在の残り見込み</span>
+      <strong>${formatDuration(a.T4, "あと")}</strong>
+    </div>
+  </div>
+
+  <p class="time-comment">
+    ${timeComment}
+  </p>
+
+  ${
+    timeDeviationRate !== null
+      ? `
+        <p class="time-gap">
+          当初想定との時間差
+          <strong>${percentSigned(timeDeviationRate)}</strong>
+        </p>
+      `
+      : ""
   }
-});
+</div>
 
-      <button type="button" id="restartBtn">
-        もう一度診断する
+    
+
+    <div class="share-section">
+
+      <div class="share-title">
+        この結果を共有
+      </div>
+
+      <div class="share-buttons">
+
+        <button
+          type="button"
+          id="shareBtn"
+          class="share-main"
+        >
+          結果を共有
+        </button>
+
+        <button
+          type="button"
+          id="xShareBtn"
+          class="share-sub"
+        >
+          Xで共有
+        </button>
+
+        <button
+          type="button"
+          id="copyBtn"
+          class="share-sub"
+        >
+          リンクをコピー
+        </button>
+
+      </div>
+
+      <p class="share-message" id="shareMessage"></p>
+
+    </div>
+
+    <div class="share-result-card">
+
+      <div class="share-card-brand">
+        <img src="kurage.png" alt="">
+        <span>思考の抜け道</span>
+      </div>
+
+      <div class="share-card-label">
+        理想・目標 到達度診断
+      </div>
+
+      <div class="share-card-target">
+        「${targetName}」
+      </div>
+
+      <div class="share-card-type-label">
+        YOUR CURRENT TYPE
+      </div>
+
+      <div class="share-card-type">
+        ${profile.type}
+      </div>
+
+      <div class="share-card-scores">
+
+        <div>
+          <span>推定到達度</span>
+          <strong>${round(structural)}%</strong>
+        </div>
+
+        <div class="share-card-score-line"></div>
+
+        <div>
+          <span>体感到達度</span>
+          <strong>${round(felt)}%</strong>
+        </div>
+
+      </div>
+
+      <div class="share-card-radar">
+        ${radarSvg}
+      </div>
+
+      <div class="share-card-tags">
+        ${profile.tags.map(tag =>
+          `<span>#${tag}</span>`
+        ).join("")}
+      </div>
+
+      <div class="share-card-footer">
+        - スクショシェア用カード -
+      </div>
+
+    </div>
+
+    <div class="save-card-wrap">
+      <button
+        type="button"
+        id="saveCardBtn"
+        class="save-card-button"
+      >
+        このカードを画像で保存
       </button>
 
-      <p class="result-channel">
-        意識を解き明かすYouTubeチャンネル<br>
-        <a
-          href="https://www.youtube.com/@思考の抜け道"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="channel-link"
-        >
-          思考の抜け道
-        </a>
-      </p>
+      <p class="save-card-message" id="saveCardMessage"></p>
+    </div>
 
-    </section>
-  `;
+    <button type="button" id="restartBtn">
+      もう一度診断する
+    </button>
+
+    <p class="result-channel">
+  意識を解き明かすYouTubeチャンネル<br>
+  <a
+    href="https://www.youtube.com/@思考の抜け道"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="channel-link"
+  >
+    思考の抜け道
+  </a>
+</p>
+
+  </section>
+`;
 
   const shareBtn = document.getElementById("shareBtn");
   const xShareBtn = document.getElementById("xShareBtn");
   const copyBtn = document.getElementById("copyBtn");
   const shareMessage = document.getElementById("shareMessage");
-const saveCardBtn = document.getElementById("saveCardBtn");
-const saveCardMessage = document.getElementById("saveCardMessage");
+  const saveCardBtn = document.getElementById("saveCardBtn");
+  const saveCardMessage = document.getElementById("saveCardMessage");
+
   function showShareMessage(message) {
     shareMessage.textContent = message;
 
@@ -1785,6 +1748,91 @@ const saveCardMessage = document.getElementById("saveCardMessage");
       showShareMessage("リンクをコピーしました");
     } catch (error) {
       showShareMessage("リンクをコピーできませんでした");
+    }
+  });
+
+  saveCardBtn.addEventListener("click", async () => {
+    const card = document.querySelector(".share-result-card");
+
+    if (!card) {
+      saveCardMessage.textContent = "カードが見つかりませんでした";
+      return;
+    }
+
+    if (typeof window.html2canvas !== "function") {
+      saveCardMessage.textContent = "画像保存機能を読み込めませんでした";
+      return;
+    }
+
+    saveCardBtn.disabled = true;
+    saveCardBtn.textContent = "画像を作成中…";
+    saveCardMessage.textContent = "";
+
+    try {
+      const canvas = await window.html2canvas(card, {
+        scale: 2,
+        backgroundColor: "#ffffff",
+        useCORS: true,
+        logging: false
+      });
+
+      const blob = await new Promise((resolve, reject) => {
+        canvas.toBlob(result => {
+          if (result) {
+            resolve(result);
+          } else {
+            reject(new Error("PNGの生成に失敗しました"));
+          }
+        }, "image/png");
+      });
+
+      const safeTarget = rawTargetName
+        .replace(/[\\/:*?"<>|]/g, "_")
+        .slice(0, 30);
+
+      const fileName = `理想目標到達度診断_${safeTarget}.png`;
+      const file = new File([blob], fileName, { type: "image/png" });
+
+      if (
+        navigator.share &&
+        navigator.canShare &&
+        navigator.canShare({ files: [file] })
+      ) {
+        try {
+          await navigator.share({
+            files: [file],
+            title: "理想・目標 到達度診断",
+            text: "思考の抜け道｜理想・目標 到達度診断"
+          });
+
+          saveCardMessage.textContent = "画像を作成しました";
+          return;
+        } catch (error) {
+          if (error && error.name === "AbortError") {
+            return;
+          }
+        }
+      }
+
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = fileName;
+
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+
+      saveCardMessage.textContent = "PNG画像を保存しました";
+    } catch (error) {
+      console.error(error);
+      saveCardMessage.textContent = "画像を保存できませんでした";
+    } finally {
+      saveCardBtn.disabled = false;
+      saveCardBtn.textContent = "このカードを画像で保存";
     }
   });
 
